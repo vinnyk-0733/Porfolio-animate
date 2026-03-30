@@ -1,8 +1,657 @@
-{"timestamp":"01:09:44.588","source":"Server","level":"ERROR","message":"⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:44.622","source":"Server","level":"ERROR","message":"Error: Cannot find module 'next/dist/pages/_error'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:44.659","source":"Server","level":"ERROR","message":"⨯ Error: Cannot find module 'next/dist/pages/_error'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:44.722","source":"Server","level":"ERROR","message":"Error: Cannot find module 'next/dist/pages/_error'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:44.852","source":"Server","level":"ERROR","message":"⨯ Error: Cannot find module 'next/dist/client/components/builtin/global-not-found'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:44.955","source":"Server","level":"ERROR","message":"Error: Cannot find module 'next/dist/pages/_error'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:44.996","source":"Server","level":"ERROR","message":"⨯ Error: Cannot find module 'next/dist/pages/_error'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
-{"timestamp":"01:09:45.034","source":"Server","level":"ERROR","message":"Error: Cannot find module 'next/dist/pages/_error'\nRequire stack:\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\on-demand-entry-handler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\dev\\hot-reloader-turbopack.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\router-server.js\n- F:\\project\\3d portolio\\node_modules\\next\\dist\\server\\lib\\start-server.js"}
+{"timestamp":"00:00:01.531","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:05.975","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:12.195","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:12.683","source":"Browser","level":"WARN","message":"updating from  114 to  122"}
+{"timestamp":"00:00:12.869","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mupdating from \\u001b[39m\" 114 \"\\u001b[33mto \\u001b[39m\" 122 \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:12.870","source":"Browser","level":"WARN","message":"\u001b[33mupdating from \u001b[39m 114 \"\\u001b[33mto \\u001b[39m\" 122"}
+{"timestamp":"00:00:13.751","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.752","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.753","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.879","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.879","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.888","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.889","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.889","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.889","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.889","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.890","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.897","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.897","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.904","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.905","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.913","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.913","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.914","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.914","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.915","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.915","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.915","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.915","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.916","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.916","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.923","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.923","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.930","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.931","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.931","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.931","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.932","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.932","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.932","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.932","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.932","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.932","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.932","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.932","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.933","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.933","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.934","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.934","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.934","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.934","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.948","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.948","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.962","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.962","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.963","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.963","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.963","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.963","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.964","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.964","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.964","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.964","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.964","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.964","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.964","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.964","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.965","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.965","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.965","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.965","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.965","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.965","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.965","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.965","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.965","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.966","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.966","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.966","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.966","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.966","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.966","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.966","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.967","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.967","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.967","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.967","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.967","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.967","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.967","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.968","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.968","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.968","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.968","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.968","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.968","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.968","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.969","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.969","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.969","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.969","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.969","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.969","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.969","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.970","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.970","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.970","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.970","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.970","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.970","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.971","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.971","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.971","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.971","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.971","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.971","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.971","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.971","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.972","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.972","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.972","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.972","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.972","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.972","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.972","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.972","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.973","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.973","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.973","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.973","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.973","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.973","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.973","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.974","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.974","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.974","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.974","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.974","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.974","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.974","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.974","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.975","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.975","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.975","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.975","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.975","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.975","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.975","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.975","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.976","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.976","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.976","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.976","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.976","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.976","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.976","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.976","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.977","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.977","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.977","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.977","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:13.992","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:13.993","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.007","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.007","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.015","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.016","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.023","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.024","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.035","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.035","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.036","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.036","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.036","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.036","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.037","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.037","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.037","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.037","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.038","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.038","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.038","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.038","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.038","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.038","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.039","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.039","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.039","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.039","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.039","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.039","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.040","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.040","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.040","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.040","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.040","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.040","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.041","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.041","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.041","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.041","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.042","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.042","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.042","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.042","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.042","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.042","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.043","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.043","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.043","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.043","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.043","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.044","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.044","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.044","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.044","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.044","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.044","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.045","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.045","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.045","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.045","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.045","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:00:14.046","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:00:14.046","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"WARN","message":"updating from  114 to  122"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.101","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.102","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.234","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mupdating from \\u001b[39m\" 114 \"\\u001b[33mto \\u001b[39m\" 122 \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.234","source":"Browser","level":"WARN","message":"\u001b[33mupdating from \u001b[39m 114 \"\\u001b[33mto \\u001b[39m\" 122"}
+{"timestamp":"00:01:10.234","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.234","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.235","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.235","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.235","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.235","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.235","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.235","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.235","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.236","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.236","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.236","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.236","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.236","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.236","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.236","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.237","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.237","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.237","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.237","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.237","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.238","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.238","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.238","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.238","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.239","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.239","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.240","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.240","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.241","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.242","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.242","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.242","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.242","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.244","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.245","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.245","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.245","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.246","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.246","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.246","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.247","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.247","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.247","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.247","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.247","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.248","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.248","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.248","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.248","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.248","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.249","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.249","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.249","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.249","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.249","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.249","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.249","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.250","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.250","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.250","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.250","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.250","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.250","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.250","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.251","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.251","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.251","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.253","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.254","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.255","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.255","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.256","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.256","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.257","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.257","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.257","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.257","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.258","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.258","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.258","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.258","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.259","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.259","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.259","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.260","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.260","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.260","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.260","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.261","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.261","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.262","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.263","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.263","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.263","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.263","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.264","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.264","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.264","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.264","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.265","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.265","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.266","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.266","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.266","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.266","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.267","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.267","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.268","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.269","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.269","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.270","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.270","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.271","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.271","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.271","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.271","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.271","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.272","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.272","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.272","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.272","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.272","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.273","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.273","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.274","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.275","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.275","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.276","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.276","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.276","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.276","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.276","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.276","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.277","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.277","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.277","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.277","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.277","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.277","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.278","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.278","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.278","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.278","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.279","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.279","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.279","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.279","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.279","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.280","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.280","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.280","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.280","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.280","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.280","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.280","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.281","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.281","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.281","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.281","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.282","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.282","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.283","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.283","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.283","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.284","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.284","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.284","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.285","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.285","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.285","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.285","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.285","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.286","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.286","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.286","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.286","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.287","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.289","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.290","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.290","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.291","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.291","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.291","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.291","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.292","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.292","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.292","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.292","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.292","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.293","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.293","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.293","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.293","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.293","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.293","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.294","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.294","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.294","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.294","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.295","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.295","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.296","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.296","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.297","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.297","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.297","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.298","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.298","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.298","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.298","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.299","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.299","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.299","source":"Browser","level":"ASSERT","message":"true"}
+{"timestamp":"00:01:10.299","source":"Server","level":"ASSERT","message":"[browser] true \"\\u001b[2m(file://F:/project/3d portolio/frontend/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)\\u001b[22m\""}
+{"timestamp":"00:01:10.299","source":"Browser","level":"ASSERT","message":"true"}
