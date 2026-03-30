@@ -2,14 +2,14 @@
 
 import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
 import React, { useState } from 'react';
-import { Menu, X, Linkedin, Instagram, Github, Link2, Globe, PersonStanding, LucidePersonStanding, PersonStandingIcon, LucideBackpack } from 'lucide-react';
+import { Menu, X, Linkedin, Instagram, Github, Link2, Globe, PersonStanding, LucidePersonStanding, PersonStandingIcon, LucideBackpack, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const CONSTANTS = {
   itemSize: 70,
   openStagger: 0.04,
   closeStagger: 0.04,
-  radius: 170 // increased distance so items map out a wide, breathable quadrant
+  radius: 190 // increased distance so items map out a wide, breathable quadrant
 };
 
 const STYLES: Record<string, Record<string, string>> = {
@@ -41,13 +41,14 @@ interface MenuItemProps {
   index: number;
   totalItems: number;
   isOpen: boolean;
+  download?: boolean;
 }
 
-const MenuItem = ({ icon, label, href, index, totalItems, isOpen }: MenuItemProps) => {
+const MenuItem = ({ icon, label, href, index, totalItems, isOpen, download }: MenuItemProps) => {
   const { x, y } = pointOnQuadrantBottomLeft(index, totalItems, CONSTANTS.radius);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="absolute z-40 outline-none">
+    <a href={href} target="_blank" rel="noopener noreferrer" download={download} className="absolute z-40 outline-none">
       <motion.button
         animate={{
           x: isOpen ? x : 0,
@@ -136,7 +137,7 @@ export const SocialQuadrantMenu = () => {
     { label: 'Instagram', icon: <Instagram size={18} />, href: 'https://www.instagram.com/vinnyk__073?igsh=YjY0bW8zb3k0Z3E1'},
     { label: 'GitHub', icon: <Github size={18} />, href: 'https://github.com/vinnyk-0733'},
     { label: 'Dinq', icon: <LucideBackpack size={18} />, href: 'https://dinq.me/admin/mydinq?domain=vinaya'},
-    // { label: 'Personal Website', icon: <Globe size={18} />, href: '' }
+    { label: 'Resume', icon: <Download size={18} />, href: 'https://drive.google.com/uc?export=download&id=1UWU6dvNHk6Im973-j4gvafO12BBC3aHF', download: true }
   ];
 
   return (
@@ -152,6 +153,7 @@ export const SocialQuadrantMenu = () => {
               index={index}
               totalItems={socialItems.length}
               isOpen={isOpen}
+              download={item.download}
             />
           );
         })}
