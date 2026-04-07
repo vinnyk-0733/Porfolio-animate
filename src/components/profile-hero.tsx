@@ -5,7 +5,7 @@ import { SpotlightCursor } from "@/components/ui/spotlight-cursor"
 import React, { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
-const words = ["I am Vinaya Kumar", "I'm a ML Engineer."];
+const words = ["I am Vinaya Kumar","A Software developer" ,"A ML Engineer."];
 
 function Typewriter() {
   const [text, setText] = useState("");
