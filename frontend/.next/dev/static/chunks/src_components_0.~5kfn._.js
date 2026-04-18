@@ -1419,285 +1419,201 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
-"[project]/src/components/ui/splite.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"[project]/src/components/ui/cybernetic-grid-shader.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
-    "SplineScene",
-    ()=>SplineScene
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-;
-'use client';
-;
-;
-;
-const Spline = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(()=>__turbopack_context__.A("[project]/node_modules/@splinetool/react-spline/dist/react-spline.js [app-client] (ecmascript, next/dynamic entry, async loader)"), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/@splinetool/react-spline/dist/react-spline.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false,
-    loading: ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "w-full h-full flex items-center justify-center text-white",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "animate-pulse",
-                children: "Loading 3D Scene..."
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/splite.tsx",
-                lineNumber: 10,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0))
-        }, void 0, false, {
-            fileName: "[project]/src/components/ui/splite.tsx",
-            lineNumber: 9,
-            columnNumber: 5
-        }, ("TURBOPACK compile-time value", void 0))
-});
-_c = Spline;
-class SplineErrorBoundary extends __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Component"] {
-    constructor(props){
-        super(props);
-        this.state = {
-            hasError: false
-        };
-    }
-    static getDerivedStateFromError() {
-        return {
-            hasError: true
-        };
-    }
-    componentDidCatch(error, errorInfo) {
-        console.error("Spline WebGL Context Trapped Error:", error, errorInfo);
-    }
-    render() {
-        if (this.state.hasError) {
-            if (/*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].isValidElement(this.props.fallback) && this.props.fallback.type === SplineErrorFallback) {
-                return /*#__PURE__*/ __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].cloneElement(this.props.fallback, {
-                    onRetry: ()=>this.setState({
-                            hasError: false
-                        })
-                });
-            }
-            return this.props.fallback;
-        }
-        return this.props.children;
-    }
-}
-function SplineErrorFallback({ onRetry }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "w-full h-full flex flex-col items-center justify-center bg-black/50 backdrop-blur-md border border-white/10 rounded-xl p-8 space-y-4",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-red-400 font-mono text-sm uppercase tracking-widest text-center",
-                children: "WebGL Context Exhausted"
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/splite.tsx",
-                lineNumber: 50,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-white/50 text-xs text-center max-w-xs",
-                children: "Your browser has temporarily run out of 3D memory due to hot-reloads."
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/splite.tsx",
-                lineNumber: 53,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                onClick: onRetry,
-                className: "px-6 py-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 rounded-full hover:bg-emerald-500 hover:text-black transition-all text-sm font-bold tracking-widest uppercase mt-4",
-                children: "Retry Engine"
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/splite.tsx",
-                lineNumber: 56,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-white/30 text-[10px] text-center mt-2",
-                children: "If this fails, refresh the page directly to dump RAM."
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/splite.tsx",
-                lineNumber: 62,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/ui/splite.tsx",
-        lineNumber: 49,
-        columnNumber: 5
-    }, this);
-}
-_c1 = SplineErrorFallback;
-function SplineScene({ scene, className }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SplineErrorBoundary, {
-        fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SplineErrorFallback, {}, void 0, false, {
-            fileName: "[project]/src/components/ui/splite.tsx",
-            lineNumber: 76,
-            columnNumber: 36
-        }, this),
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Spline, {
-            scene: scene,
-            className: className
-        }, void 0, false, {
-            fileName: "[project]/src/components/ui/splite.tsx",
-            lineNumber: 77,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/src/components/ui/splite.tsx",
-        lineNumber: 76,
-        columnNumber: 5
-    }, this);
-}
-_c2 = SplineScene;
-var _c, _c1, _c2;
-__turbopack_context__.k.register(_c, "Spline");
-__turbopack_context__.k.register(_c1, "SplineErrorFallback");
-__turbopack_context__.k.register(_c2, "SplineScene");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
-}
-}),
-"[project]/src/components/ui/spotlight-cursor.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "SpotlightCursor",
-    ()=>SpotlightCursor
+    "default",
+    ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.module.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.core.js [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
-'use client';
+var _s = __turbopack_context__.k.signature();
+"use client";
 ;
-const useSpotlightEffect = (config)=>{
+;
+const CyberneticGridShader = ({ className, maxDpr = 1, pauseOffscreen = true })=>{
     _s();
-    const canvasRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "useSpotlightEffect.useEffect": ()=>{
-            const canvas = canvasRef.current;
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            if (!ctx) return;
-            let animationFrameId;
-            let targetX = -1000;
-            let targetY = -1000;
-            let currentX = -1000;
-            let currentY = -1000;
-            const smoothing = config.smoothing || 0.15;
-            const resizeCanvas = {
-                "useSpotlightEffect.useEffect.resizeCanvas": ()=>{
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
+        "CyberneticGridShader.useEffect": ()=>{
+            const container = containerRef.current;
+            if (!container) return;
+            // ── Renderer (low-power GPU preference) ──
+            const renderer = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["WebGLRenderer"]({
+                antialias: false,
+                alpha: true,
+                powerPreference: "low-power"
+            });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+            container.appendChild(renderer.domElement);
+            const scene = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Scene"]();
+            const camera = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["OrthographicCamera"](-1, 1, 1, -1, 0, 1);
+            const clock = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Clock"]();
+            // ── GLSL ──
+            const vertexShader = /* glsl */ `
+      void main() {
+        gl_Position = vec4(position, 1.0);
+      }
+    `;
+            const fragmentShader = /* glsl */ `
+      precision mediump float;
+      uniform vec2  iResolution;
+      uniform float iTime;
+      uniform vec2  iMouse;
+
+      float random(vec2 st) {
+        return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453);
+      }
+
+      void main() {
+        vec2 uv    = (gl_FragCoord.xy - 0.5 * iResolution) / iResolution.y;
+        vec2 mouse = (iMouse        - 0.5 * iResolution) / iResolution.y;
+
+        float t         = iTime * 0.2;
+        float mouseDist = length(uv - mouse);
+
+        // warp near cursor
+        float warp = sin(mouseDist * 20.0 - t * 4.0) * 0.1;
+        warp *= smoothstep(0.4, 0.0, mouseDist);
+        uv += warp;
+
+        // grid
+        vec2  gridUv = abs(fract(uv * 10.0) - 0.5);
+        float line   = pow(1.0 - min(gridUv.x, gridUv.y), 50.0);
+
+        // base colour
+        vec3 color = vec3(0.1, 0.5, 1.0) * line * (0.5 + sin(t * 2.0) * 0.2);
+
+        // energy pulses
+        float energy = sin(uv.x * 20.0 + t * 5.0)
+                     * sin(uv.y * 20.0 + t * 3.0);
+        energy = smoothstep(0.8, 1.0, energy);
+        color += vec3(1.0, 0.2, 0.8) * energy * line;
+
+        // cursor glow
+        color += vec3(1.0) * smoothstep(0.1, 0.0, mouseDist) * 0.5;
+
+        // subtle noise
+        color += random(uv + t * 0.1) * 0.05;
+
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `;
+            // ── Uniforms ──
+            const uniforms = {
+                iTime: {
+                    value: 0
+                },
+                iResolution: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"]()
+                },
+                iMouse: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](0, 0)
                 }
-            }["useSpotlightEffect.useEffect.resizeCanvas"];
-            const handleMouseMove = {
-                "useSpotlightEffect.useEffect.handleMouseMove": (event)=>{
-                    targetX = event.clientX;
-                    targetY = event.clientY;
+            };
+            const material = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ShaderMaterial"]({
+                vertexShader,
+                fragmentShader,
+                uniforms
+            });
+            const geometry = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PlaneGeometry"](2, 2);
+            const mesh = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Mesh"](geometry, material);
+            scene.add(mesh);
+            // ── Resize (fill parent container) ──
+            const onResize = {
+                "CyberneticGridShader.useEffect.onResize": ()=>{
+                    const w = container.clientWidth;
+                    const h = container.clientHeight;
+                    if (w === 0 || h === 0) return;
+                    renderer.setSize(w, h);
+                    uniforms.iResolution.value.set(w * Math.min(window.devicePixelRatio, maxDpr), h * Math.min(window.devicePixelRatio, maxDpr));
                 }
-            }["useSpotlightEffect.useEffect.handleMouseMove"];
-            const handleMouseLeave = {
-                "useSpotlightEffect.useEffect.handleMouseLeave": ()=>{
-                    targetX = -1000;
-                    targetY = -1000;
-                }
-            }["useSpotlightEffect.useEffect.handleMouseLeave"];
-            const hexToRgb = {
-                "useSpotlightEffect.useEffect.hexToRgb": (hex)=>{
-                    const bigint = parseInt(hex.slice(1), 16);
-                    const r = bigint >> 16 & 255;
-                    const g = bigint >> 8 & 255;
-                    const b = bigint & 255;
-                    return `${r},${g},${b}`;
-                }
-            }["useSpotlightEffect.useEffect.hexToRgb"];
-            const rgbColor = hexToRgb(config.color || '#ffffff');
-            const radius = config.radius || 200;
-            const brightness = config.brightness || 0.15;
-            let lastDrawnX = -1000;
-            let lastDrawnY = -1000;
-            const draw = {
-                "useSpotlightEffect.useEffect.draw": ()=>{
-                    // Lerp toward target for smooth movement
-                    currentX += (targetX - currentX) * smoothing;
-                    currentY += (targetY - currentY) * smoothing;
-                    // Only redraw if the position has changed by a meaningful amount
-                    const dx = currentX - lastDrawnX;
-                    const dy = currentY - lastDrawnY;
-                    if (dx * dx + dy * dy > 0.25) {
-                        lastDrawnX = currentX;
-                        lastDrawnY = currentY;
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        if (currentX > -500 && currentY > -500) {
-                            const gradient = ctx.createRadialGradient(currentX, currentY, 0, currentX, currentY, radius);
-                            gradient.addColorStop(0, `rgba(${rgbColor}, ${brightness})`);
-                            gradient.addColorStop(1, 'rgba(0,0,0,0)');
-                            ctx.fillStyle = gradient;
-                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }["CyberneticGridShader.useEffect.onResize"];
+            const ro = new ResizeObserver({
+                "CyberneticGridShader.useEffect": ()=>onResize()
+            }["CyberneticGridShader.useEffect"]);
+            ro.observe(container);
+            onResize();
+            // ── Mouse (throttled via rAF) ──
+            let mouseRaf = 0;
+            const onMouseMove = {
+                "CyberneticGridShader.useEffect.onMouseMove": (e)=>{
+                    if (mouseRaf) return;
+                    mouseRaf = requestAnimationFrame({
+                        "CyberneticGridShader.useEffect.onMouseMove": ()=>{
+                            mouseRaf = 0;
+                            uniforms.iMouse.value.set(e.clientX * Math.min(window.devicePixelRatio, maxDpr), (container.clientHeight - e.clientY) * Math.min(window.devicePixelRatio, maxDpr));
                         }
-                    }
-                    animationFrameId = requestAnimationFrame(draw);
+                    }["CyberneticGridShader.useEffect.onMouseMove"]);
                 }
-            }["useSpotlightEffect.useEffect.draw"];
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            window.addEventListener('mousemove', handleMouseMove, {
+            }["CyberneticGridShader.useEffect.onMouseMove"];
+            window.addEventListener("mousemove", onMouseMove, {
                 passive: true
             });
-            window.addEventListener('mouseleave', handleMouseLeave);
-            animationFrameId = requestAnimationFrame(draw);
-            return ({
-                "useSpotlightEffect.useEffect": ()=>{
-                    window.removeEventListener('resize', resizeCanvas);
-                    window.removeEventListener('mousemove', handleMouseMove);
-                    window.removeEventListener('mouseleave', handleMouseLeave);
-                    cancelAnimationFrame(animationFrameId);
+            // ── Visibility: pause when off-screen ──
+            let isVisible = true;
+            let observer = null;
+            if (pauseOffscreen) {
+                observer = new IntersectionObserver({
+                    "CyberneticGridShader.useEffect": ([entry])=>{
+                        isVisible = entry.isIntersecting;
+                    }
+                }["CyberneticGridShader.useEffect"], {
+                    threshold: 0.05
+                });
+                observer.observe(container);
+            }
+            // ── Render loop ──
+            renderer.setAnimationLoop({
+                "CyberneticGridShader.useEffect": ()=>{
+                    if (!isVisible) return; // skip GPU work entirely when off-screen
+                    uniforms.iTime.value = clock.getElapsedTime();
+                    renderer.render(scene, camera);
                 }
-            })["useSpotlightEffect.useEffect"];
+            }["CyberneticGridShader.useEffect"]);
+            // ── Cleanup ──
+            return ({
+                "CyberneticGridShader.useEffect": ()=>{
+                    ro.disconnect();
+                    observer?.disconnect();
+                    window.removeEventListener("mousemove", onMouseMove);
+                    if (mouseRaf) cancelAnimationFrame(mouseRaf);
+                    renderer.setAnimationLoop(null);
+                    renderer.domElement.remove();
+                    material.dispose();
+                    geometry.dispose();
+                    renderer.dispose();
+                }
+            })["CyberneticGridShader.useEffect"];
         }
-    }["useSpotlightEffect.useEffect"], [
-        config.radius,
-        config.brightness,
-        config.color,
-        config.smoothing
+    }["CyberneticGridShader.useEffect"], [
+        maxDpr,
+        pauseOffscreen
     ]);
-    return canvasRef;
-};
-_s(useSpotlightEffect, "UJgi7ynoup7eqypjnwyX/s32POg=");
-const SpotlightCursor = ({ config = {}, className, ...rest })=>{
-    _s1();
-    const spotlightConfig = {
-        radius: 400,
-        brightness: 0.15,
-        color: '#ffffff',
-        smoothing: 0.15,
-        ...config
-    };
-    const canvasRef = useSpotlightEffect(spotlightConfig);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("canvas", {
-        ref: canvasRef,
-        className: `fixed top-0 left-0 pointer-events-none z-10 w-full h-full ${className || ''}`,
-        ...rest
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        ref: containerRef,
+        className: className,
+        style: {
+            width: "100%",
+            height: "100%",
+            overflow: "hidden"
+        },
+        "aria-label": "Cybernetic Grid animated background"
     }, void 0, false, {
-        fileName: "[project]/src/components/ui/spotlight-cursor.tsx",
-        lineNumber: 125,
+        fileName: "[project]/src/components/ui/cybernetic-grid-shader.tsx",
+        lineNumber: 167,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s1(SpotlightCursor, "KJOYKaUEEgfm82DLjEwbyeXizpE=", false, function() {
-    return [
-        useSpotlightEffect
-    ];
-});
-_c = SpotlightCursor;
+_s(CyberneticGridShader, "8puyVO4ts1RhCfXUmci3vLI3Njw=");
+_c = CyberneticGridShader;
+const __TURBOPACK__default__export__ = CyberneticGridShader;
 var _c;
-__turbopack_context__.k.register(_c, "SpotlightCursor");
+__turbopack_context__.k.register(_c, "CyberneticGridShader");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -1710,14 +1626,12 @@ __turbopack_context__.s([
     ()=>ProfileHero
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$splite$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/splite.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$spotlight$2d$cursor$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/spotlight-cursor.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$cybernetic$2d$grid$2d$shader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/cybernetic-grid-shader.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-client] (ecmascript) <export default as ChevronDown>");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
-;
 ;
 ;
 ;
@@ -1777,13 +1691,13 @@ function Typewriter() {
                 children: "|"
             }, void 0, false, {
                 fileName: "[project]/src/components/profile-hero.tsx",
-                lineNumber: 42,
+                lineNumber: 41,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/profile-hero.tsx",
-        lineNumber: 40,
+        lineNumber: 39,
         columnNumber: 5
     }, this);
 }
@@ -1794,31 +1708,19 @@ function ProfileHero() {
         id: "profile",
         className: "relative min-h-screen bg-black overflow-hidden flex items-center p-6 sm:p-12 md:p-24",
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$spotlight$2d$cursor$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SpotlightCursor"], {
-                className: "z-[5]",
-                config: {
-                    radius: 600,
-                    brightness: 0.12,
-                    color: "#ffffff"
-                }
-            }, void 0, false, {
-                fileName: "[project]/src/components/profile-hero.tsx",
-                lineNumber: 51,
-                columnNumber: 7
-            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-y-0 right-0 md:left-0 z-0 w-full md:w-[100vw] lg:w-[100vw]",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$splite$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SplineScene"], {
-                    scene: "https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode",
-                    className: "w-full h-full"
+                className: "absolute inset-0 z-0",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$cybernetic$2d$grid$2d$shader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                    maxDpr: 1,
+                    pauseOffscreen: true
                 }, void 0, false, {
                     fileName: "[project]/src/components/profile-hero.tsx",
-                    lineNumber: 55,
+                    lineNumber: 51,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/profile-hero.tsx",
-                lineNumber: 54,
+                lineNumber: 50,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1828,12 +1730,12 @@ function ProfileHero() {
                         className: "text-4xl md:text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 min-h-[3em] sm:min-h-[2em] lg:min-h-[2.5em] flex items-center font-sans tracking-tight drop-shadow-lg",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Typewriter, {}, void 0, false, {
                             fileName: "[project]/src/components/profile-hero.tsx",
-                            lineNumber: 64,
+                            lineNumber: 57,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile-hero.tsx",
-                        lineNumber: 63,
+                        lineNumber: 56,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1841,7 +1743,7 @@ function ProfileHero() {
                         children: "A Machine Learning enthusiast who loves teaching machines to understand data."
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile-hero.tsx",
-                        lineNumber: 66,
+                        lineNumber: 59,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1859,32 +1761,32 @@ function ProfileHero() {
                                 children: "Scroll to Explore"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile-hero.tsx",
-                                lineNumber: 79,
+                                lineNumber: 72,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile-hero.tsx",
-                                lineNumber: 80,
+                                lineNumber: 73,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile-hero.tsx",
-                        lineNumber: 71,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile-hero.tsx",
-                lineNumber: 62,
+                lineNumber: 55,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/profile-hero.tsx",
-        lineNumber: 49,
+        lineNumber: 48,
         columnNumber: 5
     }, this);
 }
@@ -1952,4 +1854,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=src_components_08da37c._.js.map
+//# sourceMappingURL=src_components_0.~5kfn._.js.map

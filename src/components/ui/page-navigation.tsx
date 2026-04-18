@@ -25,7 +25,7 @@ export function PageNavigation() {
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
-      <div className="flex items-center gap-2 p-2 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl">
+      <div className="flex items-center gap-2 p-2 bg-black/60 backdrop-blur-sm border border-white/10 rounded-full shadow-2xl">
         {filteredLinks.map((link) => {
           const Icon = link.icon;
           return (

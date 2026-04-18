@@ -168,7 +168,7 @@ export function MorphingCardStack({
                     setExpandedCard(card.id)
                   }}
                   className={cn(
-                    "cursor-pointer rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl p-6 shadow-xl",
+                    "cursor-pointer rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm p-6 shadow-xl",
                     "hover:border-white/30 transition-colors flex flex-col group",
                     layout === "stack" && "absolute w-72 h-80 sm:w-80 sm:h-96 origin-bottom-right",
                     layout === "stack" && isTopCard && "cursor-grab active:cursor-grabbing hover:shadow-2xl hover:shadow-white/10",

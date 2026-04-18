@@ -1,9 +1,21 @@
 "use client"
 
-import { MorphingCardStack } from "@/components/ui/morphing-card-stack";
+import dynamic from "next/dynamic"
 import { Award, Medal, ShieldCheck, FileBadge, CheckCircle, Sparkles, BarChart, Cpu, Activity, Database, BrainCircuit } from "lucide-react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+
+const MorphingCardStack = dynamic(
+  () => import("@/components/ui/morphing-card-stack").then((mod) => mod.MorphingCardStack),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="min-h-[500px] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-2 border-white/20 border-t-white animate-spin" />
+      </div>
+    ),
+  }
+);
 
 const certificationsData = [
   {

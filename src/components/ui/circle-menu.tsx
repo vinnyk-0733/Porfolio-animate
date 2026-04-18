@@ -133,11 +133,11 @@ export const SocialQuadrantMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const socialItems = [
-    { label: 'LinkedIn', icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/in/vinaya-kumar-49472031b/'},
-    { label: 'Instagram', icon: <Instagram size={18} />, href: 'https://www.instagram.com/vinnyk__073?igsh=YjY0bW8zb3k0Z3E1'},
-    { label: 'GitHub', icon: <Github size={18} />, href: 'https://github.com/vinnyk-0733'},
-    { label: 'Dinq', icon: <LucideBackpack size={18} />, href: 'https://dinq.me/admin/mydinq?domain=vinaya'},
-    { label: 'Resume', icon: <Download size={18} />, href: 'https://drive.google.com/uc?export=download&id=1UWU6dvNHk6Im973-j4gvafO12BBC3aHF', download: true }
+    { label: '', icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/in/vinaya-kumar-49472031b/'},
+    { label: '', icon: <Instagram size={18} />, href: 'https://www.instagram.com/vinnyk__073?igsh=YjY0bW8zb3k0Z3E1'},
+    { label: '', icon: <Github size={18} />, href: 'https://github.com/vinnyk-0733'},
+    { label: '', icon: <LucideBackpack size={18} />, href: 'https://dinq.me/admin/mydinq?domain=vinaya'},
+    { label: '', icon: <Download size={18} />, href: 'https://drive.google.com/uc?export=download&id=1UWU6dvNHk6Im973-j4gvafO12BBC3aHF', download: true }
   ];
 
   return (

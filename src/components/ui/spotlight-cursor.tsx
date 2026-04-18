@@ -52,23 +52,34 @@ const useSpotlightEffect = (config: SpotlightConfig) => {
     const radius = config.radius || 200;
     const brightness = config.brightness || 0.15;
 
+    let lastDrawnX = -1000;
+    let lastDrawnY = -1000;
+
     const draw = () => {
       // Lerp toward target for smooth movement
       currentX += (targetX - currentX) * smoothing;
       currentY += (targetY - currentY) * smoothing;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Only redraw if the position has changed by a meaningful amount
+      const dx = currentX - lastDrawnX;
+      const dy = currentY - lastDrawnY;
+      if (dx * dx + dy * dy > 0.25) {
+        lastDrawnX = currentX;
+        lastDrawnY = currentY;
 
-      if (currentX > -500 && currentY > -500) {
-        const gradient = ctx.createRadialGradient(
-          currentX, currentY, 0,
-          currentX, currentY, radius
-        );
-        gradient.addColorStop(0, `rgba(${rgbColor}, ${brightness})`);
-        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        if (currentX > -500 && currentY > -500) {
+          const gradient = ctx.createRadialGradient(
+            currentX, currentY, 0,
+            currentX, currentY, radius
+          );
+          gradient.addColorStop(0, `rgba(${rgbColor}, ${brightness})`);
+          gradient.addColorStop(1, 'rgba(0,0,0,0)');
+
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
       }
 
       animationFrameId = requestAnimationFrame(draw);

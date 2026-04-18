@@ -67,7 +67,7 @@ const nodeTemplates: Omit<WorkflowNode, "id" | "position">[] = [
 const initialNodes: WorkflowNode[] = [
   {
     id: "node-edu",
-    type: "pending",
+    type: "completed",
     title: "B.Tech CSE",
     description: "Gandhi Institute of Engineering",
     icon: GraduationCap,

@@ -16,7 +16,7 @@ export const EvervaultBackground = ({
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    setRandomString(generateRandomString(20000));
+    setRandomString(generateRandomString(5000));
   }, []);
 
   const onMouseMove = useCallback(({ currentTarget, clientX, clientY }: React.MouseEvent) => {
@@ -65,7 +65,7 @@ export const CardPattern = React.memo(function CardPattern({ mouseX, mouseY, ran
       <div className="absolute inset-0 rounded-[inherit] [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
       
       <motion.div
-        className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-green-500 to-blue-700 opacity-0 group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
+        className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-green-500 to-blue-700 opacity-0 group-hover/card:opacity-100 backdrop-blur-sm transition duration-500"
         style={style}
       />
       

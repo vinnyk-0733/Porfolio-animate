@@ -1,9 +1,22 @@
 "use client"
 
-import { GlobeBars, BarMarker } from "@/components/ui/cobe-globe-bars"
+import dynamic from "next/dynamic"
+import type { BarMarker } from "@/components/ui/cobe-globe-bars"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+
+const GlobeBars = dynamic(
+  () => import("@/components/ui/cobe-globe-bars").then((mod) => mod.GlobeBars),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full aspect-square flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-2 border-emerald-500/30 border-t-emerald-500 animate-spin" />
+      </div>
+    ),
+  }
+);
 
 const technicalSkills: BarMarker[] = [
   { id: "skl-1", location: [37.77, -122.41], value: 85, label: "PYTHON" },

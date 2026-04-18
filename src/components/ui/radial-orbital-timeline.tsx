@@ -199,7 +199,7 @@ export default function RadialOrbitalTimeline({
               <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
             </div>
 
-            <div className="absolute w-[480px] h-[480px] rounded-full bg-black/60 backdrop-blur-3xl shadow-[0_0_100px_rgba(0,0,0,0.8)]"></div>
+            <div className="absolute w-[480px] h-[480px] rounded-full bg-black/60 backdrop-blur-sm shadow-[0_0_100px_rgba(0,0,0,0.8)]"></div>
 
             {timelineData.map((item, index) => {
               const position = calculateNodePosition(index, timelineData.length, rotationAngleRef.current);
@@ -276,7 +276,7 @@ export default function RadialOrbitalTimeline({
                   </div>
 
                   {isExpanded && (
-                    <Card className="absolute top-[88px] left-1/2 -translate-x-1/2 w-96 bg-black/90 backdrop-blur-3xl border-white/20 shadow-xl shadow-white/10 overflow-visible z-50">
+                    <Card className="absolute top-[88px] left-1/2 -translate-x-1/2 w-96 bg-black/90 backdrop-blur-sm border-white/20 shadow-xl shadow-white/10 overflow-visible z-50">
                       <div className="absolute -top-[32px] left-1/2 -translate-x-1/2 w-px h-[32px] bg-white/50"></div>
                       <CardHeader className="pb-2">
                         <div className="flex justify-between items-center">

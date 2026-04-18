@@ -1,8 +1,12 @@
 "use client"
 
-import { SplineScene } from "@/components/ui/splite";
-import { SpotlightCursor } from "@/components/ui/spotlight-cursor"
+import dynamic from "next/dynamic";
 import React, { useState, useEffect } from "react";
+
+const CyberneticGridShader = dynamic(
+  () => import("@/components/ui/cybernetic-grid-shader"),
+  { ssr: false }
+);
 import { ChevronDown } from "lucide-react";
 
 const words = ["I am Vinaya Kumar","A Software developer" ,"A ML Engineer."];
@@ -47,15 +51,9 @@ function Typewriter() {
 export function ProfileHero() {
   return (
     <div id="profile" className="relative min-h-screen bg-black overflow-hidden flex items-center p-6 sm:p-12 md:p-24">
-      {/* Dynamic Background Spotlight */}
-      <SpotlightCursor className="z-[5]" config={{ radius: 600, brightness: 0.12, color: "#ffffff" }} />
-      
-      {/* Fullscreen Spline Background */}
-      <div className="absolute inset-y-0 right-0 md:left-0 z-0 w-[100vw] md:w-[150vw] lg:w-[130vw]">
-        <SplineScene
-          scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-          className="w-full h-full"
-        />
+      {/* Cybernetic Grid Background (replaces Spline + SpotlightCursor) */}
+      <div className="absolute inset-0 z-0">
+        <CyberneticGridShader maxDpr={1} pauseOffscreen />
       </div>
 
       {/* Front Interface */}
@@ -63,7 +61,7 @@ export function ProfileHero() {
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 min-h-[3em] sm:min-h-[2em] lg:min-h-[2.5em] flex items-center font-sans tracking-tight drop-shadow-lg">
           <Typewriter />
         </h1>
-        <p className="mt-4 text-neutral-300 max-w-xl text-lg md:text-xl leading-relaxed backdrop-blur-xl bg-black/40 p-6 rounded-2xl border border-white/10 shadow-2xl pointer-events-auto relative">
+        <p className="mt-4 text-neutral-300 max-w-xl text-lg md:text-xl leading-relaxed backdrop-blur-sm bg-black/40 p-6 rounded-2xl border border-white/10 shadow-2xl pointer-events-auto relative">
           A Machine Learning enthusiast who loves teaching machines to understand data.
         </p>
 

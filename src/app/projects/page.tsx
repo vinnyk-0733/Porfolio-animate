@@ -1,10 +1,24 @@
 'use client'
 
 import React, { useState } from "react"
+import dynamic from "next/dynamic"
 import { CodeIcon, Fingerprint, BarChart3, ArrowLeft, ExternalLink, Github } from "lucide-react"
-import { PixelCanvas } from "@/components/ui/pixel-canvas"
-import { CursorCardsContainer, CursorCard } from "@/components/ui/cursor-cards"
 import Link from "next/link"
+
+const PixelCanvas = dynamic(
+  () => import("@/components/ui/pixel-canvas").then((mod) => mod.PixelCanvas),
+  { ssr: false }
+);
+
+const CursorCardsContainer = dynamic(
+  () => import("@/components/ui/cursor-cards").then((mod) => mod.CursorCardsContainer),
+  { ssr: false }
+);
+
+const CursorCard = dynamic(
+  () => import("@/components/ui/cursor-cards").then((mod) => mod.CursorCard),
+  { ssr: false }
+);
 
 const projects = [
   {
