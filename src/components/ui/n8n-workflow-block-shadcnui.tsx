@@ -94,7 +94,7 @@ const initialNodes: WorkflowNode[] = [
   },
   {
     id: "node-1774829864044-1",
-    type: "pending",
+    type: "completed",
     title: "Data Research Analyst",
     description: "search and validate the data - present",
     color: "purple",
