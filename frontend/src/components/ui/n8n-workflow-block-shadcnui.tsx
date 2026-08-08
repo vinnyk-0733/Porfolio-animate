@@ -87,7 +87,7 @@ const initialNodes: WorkflowNode[] = [
     id: "node-exp2",
     type: "completed",
     title: "Naresh I Technology",
-    description: "Python DS Intern (May - Jul 2025)",
+    description: "Oracle Database (May - Jul 2025)",
     icon: Briefcase,
     color: "purple",
     position: { x: 350, y: 224.22219848632812 },
