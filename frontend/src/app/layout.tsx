@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PageNavigation } from "@/components/ui/page-navigation";
 import { SocialQuadrantMenu } from "@/components/ui/circle-menu";
+import { AdminProvider } from "@/context/admin-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +32,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {children}
-        <PageNavigation />
-        <SocialQuadrantMenu />
+        <AdminProvider>
+          {children}
+          <PageNavigation />
+          <SocialQuadrantMenu />
+        </AdminProvider>
       </body>
     </html>
   );

@@ -129,16 +129,44 @@ const MenuTrigger = ({ setIsOpen, isOpen, itemsLength }: MenuTriggerProps) => {
   );
 };
 
+import { defaultSocials, SocialItem } from '@/lib/default-data';
+
+const socialIconMap: Record<string, React.ReactNode> = {
+  Linkedin: <Linkedin size={18} />,
+  Instagram: <Instagram size={18} />,
+  Github: <Github size={18} />,
+  LucideBackpack: <LucideBackpack size={18} />,
+  Download: <Download size={18} />,
+};
+
 export const SocialQuadrantMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [socialItems, setSocialItems] = useState(() =>
+    defaultSocials.map((s) => ({
+      label: s.label || '',
+      icon: socialIconMap[s.iconName] || <Link2 size={18} />,
+      href: s.href,
+      download: s.download,
+    }))
+  );
 
-  const socialItems = [
-    { label: '', icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/in/vinaya-kumar-49472031b/'},
-    { label: '', icon: <Instagram size={18} />, href: 'https://www.instagram.com/vinnyk__073?igsh=YjY0bW8zb3k0Z3E1'},
-    { label: '', icon: <Github size={18} />, href: 'https://github.com/vinnyk-0733'},
-    { label: '', icon: <LucideBackpack size={18} />, href: 'https://dinq.me/admin/mydinq?domain=vinaya'},
-    { label: '', icon: <Download size={18} />, href: 'https://drive.google.com/file/d/1bmiGMIKuHn1kB2iZQuj2pjgPNahXe9BB/view?usp=drive_link', download: true }
-  ];
+  React.useEffect(() => {
+    fetch('/api/socials', { cache: 'no-store' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: SocialItem[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setSocialItems(
+            data.map((s) => ({
+              label: s.label || '',
+              icon: socialIconMap[s.iconName] || <Link2 size={18} />,
+              href: s.href,
+              download: s.download,
+            }))
+          );
+        }
+      })
+      .catch((err) => console.warn('Could not fetch socials from MongoDB, using fallback', err));
+  }, []);
 
   return (
     <div className="fixed bottom-6 left-6 z-50 flex items-center justify-center">

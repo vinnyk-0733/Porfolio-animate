@@ -18,7 +18,7 @@ const N8nWorkflowBlock = dynamic(
 
 export default function ExperiencePage() {
   return (
-    <main className="relative h-screen min-h-screen bg-black overflow-hidden flex flex-col p-4 sm:p-8 selection:bg-white/20 pb-24">
+    <main className="relative min-h-screen bg-black overflow-y-auto overflow-x-hidden flex flex-col p-4 sm:p-6 md:p-8 selection:bg-white/20 pb-28 md:pb-32">
 
       {/* Top Left Navigation Header */}
       <div className="absolute top-6 left-6 z-20 pointer-events-auto">
@@ -30,17 +30,17 @@ export default function ExperiencePage() {
         </Link>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col flex-1 pointer-events-auto mt-16 md:mt-12 h-full">
-        <div className="text-center space-y-2 mb-6 shrink-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col flex-1 pointer-events-auto mt-12 md:mt-8">
+        <div className="text-center space-y-1 sm:space-y-2 mb-3 sm:mb-4 shrink-0">
            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
               My <span className="text-emerald-400">Experience</span> Map
            </h1>
-           <p className="text-neutral-400 max-w-2xl mx-auto text-sm md:text-base">
+           <p className="text-neutral-400 max-w-2xl mx-auto text-xs sm:text-sm md:text-base">
              A node-based technical history of my journey. Drag nodes around to explore the timeline map.
            </p>
         </div>
 
-        <div className="w-full flex-1 min-h-0 flex flex-col">
+        <div className="w-full flex-1 flex flex-col items-center">
           <N8nWorkflowBlock />
         </div>
       </div>
