@@ -144,7 +144,7 @@ export function ResumeDemo() {
       {/* Edit Resume Modal */}
       {editModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md pointer-events-auto">
-          <div className="relative w-full max-w-3xl rounded-2xl border border-white/15 bg-neutral-950/95 p-6 text-white shadow-2xl backdrop-blur-xl max-h-[90vh] overflow-y-auto">
+          <div className="relative w-full max-w-3xl rounded-2xl border border-white/15 bg-neutral-950 p-4 sm:p-6 text-white shadow-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain">
             <button
               onClick={() => setEditModalOpen(false)}
               className="absolute top-4 right-4 p-1 rounded-full text-white/40 hover:text-white hover:bg-white/10"

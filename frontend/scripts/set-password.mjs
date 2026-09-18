@@ -1,106 +1,108 @@
 import { MongoClient } from "mongodb";
-import crypto from "crypto";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import nextEnv from "@next/env";
+import { pbkdf2Sync, randomBytes } from "node:crypto";
+import { createInterface } from "node:readline";
+import { Writable } from "node:stream";
+import { fileURLToPath } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+nextEnv.loadEnvConfig(fileURLToPath(new URL("../", import.meta.url)));
 
-// Load .env.local if present
-const envLocalPath = path.resolve(__dirname, "../.env.local");
-const envPath = path.resolve(__dirname, "../.env");
+const iterations = 210000;
 
-function loadEnvFile(filePath) {
-  if (fs.existsSync(filePath)) {
-    const content = fs.readFileSync(filePath, "utf-8");
-    content.split(/\r?\n/).forEach((line) => {
-      line = line.trim();
-      if (!line || line.startsWith("#")) return;
-      const eqIdx = line.indexOf("=");
-      if (eqIdx !== -1) {
-        const key = line.substring(0, eqIdx).trim();
-        let val = line.substring(eqIdx + 1).trim();
-        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-          val = val.slice(1, -1);
-        }
-        if (!process.env[key]) {
-          process.env[key] = val;
-        }
-      }
+function readHiddenPassword(prompt) {
+  return new Promise((resolve, reject) => {
+    // Readline still handles editing and paste; its output never echoes secrets.
+    const hiddenOutput = new Writable({
+      write(_chunk, _encoding, callback) {
+        callback();
+      },
     });
+    const reader = createInterface({
+      input: process.stdin,
+      output: hiddenOutput,
+      terminal: true,
+    });
+    let answered = false;
+    process.stdout.write(prompt);
+    reader.once("SIGINT", () => reader.close());
+    reader.once("close", () => {
+      process.stdout.write("\n");
+      if (!answered) reject(new Error("Password setup cancelled."));
+    });
+    reader.question("", (answer) => {
+      answered = true;
+      reader.close();
+      resolve(answer);
+    });
+  });
+}
+
+async function getPassword() {
+  let password = process.argv[2] || process.env.ADMIN_PASSWORD;
+  if (process.env.ADMIN_PASSWORD) delete process.env.ADMIN_PASSWORD;
+
+  if (!password) {
+    if (!process.stdin.isTTY || !process.stdout.isTTY) {
+      throw new Error("Provide password as argument, set ADMIN_PASSWORD, or run in a terminal for a hidden prompt.");
+    }
+    password = await readHiddenPassword("New admin password (input hidden): ");
+    const confirmation = await readHiddenPassword("Confirm admin password (input hidden): ");
+    if (password !== confirmation) throw new Error("Passwords do not match.");
   }
-}
 
-loadEnvFile(envLocalPath);
-loadEnvFile(envPath);
-
-const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB || "portfolio_db";
-const newPassword = process.argv[2] || "vinayakr073@s";
-
-if (!uri) {
-  console.error("Error: MONGODB_URI is not defined in .env.local or environment.");
-  process.exit(1);
-}
-
-function hashPassword(password) {
-  const salt = crypto.randomBytes(16).toString("hex");
-  const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex");
-  return { hash, salt };
-}
-
-function verifyPassword(password, hash, salt) {
-  const verifyHash = crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex");
-  return crypto.timingSafeEqual(Buffer.from(hash, "hex"), Buffer.from(verifyHash, "hex"));
+  if (Array.from(password).length < 8 || Buffer.byteLength(password, "utf8") > 1024) {
+    throw new Error("The admin password must contain at least 8 characters and no more than 1024 UTF-8 bytes.");
+  }
+  return password;
 }
 
 async function main() {
-  console.log(`Connecting to MongoDB...`);
-  const client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
-
+  let password;
   try {
+    password = await getPassword();
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+    return;
+  }
+
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    console.error("MONGODB_URI must be configured in frontend/.env.local or the environment.");
+    process.exitCode = 1;
+    return;
+  }
+
+  let client;
+  try {
+    const salt = randomBytes(16).toString("hex");
+    const hash = pbkdf2Sync(password, salt, iterations, 64, "sha512").toString("hex");
+    password = undefined;
+    client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
     await client.connect();
-    console.log("Connected successfully to MongoDB Atlas.");
-
-    const db = client.db(dbName);
-    const collection = db.collection("admin_auth");
-
-    const { hash, salt } = hashPassword(newPassword);
-
-    // Verify hashing integrity
-    if (!verifyPassword(newPassword, hash, salt)) {
-      throw new Error("Password verification check failed internally.");
-    }
-
-    const result = await collection.updateOne(
+    await client.db(process.env.MONGODB_DB || "portfolio_db").collection("admin_auth").updateOne(
       { username: "admin" },
       {
         $set: {
           username: "admin",
+          passwordVersion: 2,
+          iterations,
           hash,
           salt,
           updatedAt: new Date(),
         },
-        $setOnInsert: {
-          createdAt: new Date(),
-        },
+        $setOnInsert: { createdAt: new Date() },
       },
       { upsert: true }
     );
-
-    console.log("\nPassword update result:");
-    console.log(`- Matched: ${result.matchedCount}`);
-    console.log(`- Modified: ${result.modifiedCount}`);
-    console.log(`- Upserted: ${result.upsertedCount ? result.upsertedId : "No (updated existing)"}`);
-    console.log(`\nSuccessfully encrypted and stored new password in collection 'admin_auth'!`);
-    console.log(`Password verification confirmed valid.`);
-  } catch (error) {
-    console.error("Failed to update password in MongoDB:", error);
-    process.exit(1);
+    console.log("Admin password updated successfully.");
+  } catch {
+    // Driver errors can contain connection details. Keep those out of output.
+    console.error("Password update failed. Check your MongoDB connection and database permissions.");
+    process.exitCode = 1;
   } finally {
-    await client.close();
+    if (client) await client.close();
   }
 }
 
-main();
+await main();

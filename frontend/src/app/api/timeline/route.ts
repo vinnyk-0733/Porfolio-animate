@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/require-admin";
 import { getTimelineData, updateTimelineData } from "@/lib/db";
 import { TimelineSectionItem } from "@/lib/default-data";
 
@@ -9,15 +10,18 @@ export async function GET() {
   try {
     const data = await getTimelineData();
     return NextResponse.json(data);
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to load timeline data", details: error.message },
+      { error: "Failed to load timeline data", details: error instanceof Error ? error.message : "Unknown error" },
       { status: 500 }
     );
   }
 }
 
 export async function PUT(req: NextRequest) {
+  const unauthorized = requireAdmin(req);
+  if (unauthorized) return unauthorized;
+
   try {
     const body: TimelineSectionItem[] = await req.json();
     if (!Array.isArray(body)) {
@@ -25,9 +29,9 @@ export async function PUT(req: NextRequest) {
     }
     const updated = await updateTimelineData(body);
     return NextResponse.json({ success: true, count: updated.length, data: updated });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to update timeline data", details: error.message },
+      { error: "Failed to update timeline data", details: error instanceof Error ? error.message : "Unknown error" },
       { status: 500 }
     );
   }

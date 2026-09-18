@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:security": "node --test tests/security.test.cjs",
     "db:seed": "node scripts/seed.mjs",
     "db:password": "node scripts/set-password.mjs"
   },

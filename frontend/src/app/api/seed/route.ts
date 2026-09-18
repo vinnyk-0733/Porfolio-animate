@@ -1,40 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
 import { seedDatabase } from "@/lib/db";
+import { requireAdmin } from "@/lib/require-admin";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
+  const unauthorized = requireAdmin(req);
+  if (unauthorized) return unauthorized;
+
+  let body: unknown;
   try {
-    const { searchParams } = new URL(req.url);
-    const force = searchParams.get("force") === "true";
-    const result = await seedDatabase(force);
-    return NextResponse.json({
-      success: true,
-      message: "Database seed operation completed",
-      details: result,
-    });
-  } catch (error: any) {
+    body = await req.json();
+  } catch {
     return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 }
+      { success: false, error: "Expected a valid JSON object" },
+      { status: 400 }
     );
   }
-}
 
-export async function POST(req: NextRequest) {
+  if (typeof body !== "object" || body === null || Array.isArray(body)) {
+    return NextResponse.json(
+      { success: false, error: "Expected a JSON object" },
+      { status: 400 }
+    );
+  }
+
+  if ("force" in body && typeof body.force !== "boolean") {
+    return NextResponse.json(
+      { success: false, error: "force must be a boolean" },
+      { status: 400 }
+    );
+  }
+
+  const force = "force" in body && body.force === true;
+
   try {
-    const body = await req.json().catch(() => ({}));
-    const force = Boolean(body.force);
     const result = await seedDatabase(force);
     return NextResponse.json({
       success: true,
       message: "Database seed operation completed",
       details: result,
     });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: error instanceof Error ? error.message : "Failed to seed database" },
       { status: 500 }
     );
   }

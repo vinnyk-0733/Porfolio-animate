@@ -83,16 +83,27 @@ export function GlobeBars({
     let globe: ReturnType<typeof createGlobe> | null = null
     let animationId: number
     let phi = 0
+    let isVisible = true
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry?.isIntersecting ?? true
+      },
+      { threshold: 0.05 }
+    )
+    observer.observe(canvas)
 
     function init() {
       const width = canvas.offsetWidth
       if (width === 0 || globe) return
 
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+
       globe = createGlobe(canvas, {
-        devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
+        devicePixelRatio: Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2),
         width, height: width,
         phi: 0, theta: 0.2, dark: 1, diffuse: 1.5,
-        mapSamples: 16000, mapBrightness: 6,
+        mapSamples: isMobile ? 8000 : 16000, mapBrightness: 6,
         baseColor: [0.1, 0.1, 0.12],
         markerColor: [0.95, 0.95, 0.95],
         glowColor: [0.15, 0.15, 0.15],
@@ -102,11 +113,13 @@ export function GlobeBars({
         arcWidth: 0.5, arcHeight: 0.25, opacity: 0.8,
       })
       function animate() {
-        if (!isPausedRef.current && !isLabelExpandedRef.current) phi += speed
-        globe!.update({
-          phi: phi + phiOffsetRef.current + dragOffset.current.phi,
-          theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
-        })
+        if (isVisible && !isPausedRef.current && !isLabelExpandedRef.current) {
+          phi += speed
+          globe!.update({
+            phi: phi + phiOffsetRef.current + dragOffset.current.phi,
+            theta: 0.2 + thetaOffsetRef.current + dragOffset.current.theta,
+          })
+        }
         animationId = requestAnimationFrame(animate)
       }
       animate()
@@ -126,6 +139,7 @@ export function GlobeBars({
     }
 
     return () => {
+      observer.disconnect()
       if (animationId) cancelAnimationFrame(animationId)
       if (globe) globe.destroy()
     }

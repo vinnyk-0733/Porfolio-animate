@@ -1,196 +1,70 @@
-'use client';
+"use client";
 
-import { AnimatePresence, motion, useAnimationControls } from 'framer-motion';
-import React, { useState } from 'react';
-import { Menu, X, Linkedin, Instagram, Github, Link2, Globe, PersonStanding, LucidePersonStanding, PersonStandingIcon, LucideBackpack, Download } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, Linkedin, Instagram, Github, Link2, LucideBackpack, Download } from "lucide-react";
+import { defaultSocials, type SocialItem } from "@/lib/default-data";
 
-const CONSTANTS = {
-  itemSize: 70,
-  openStagger: 0.04,
-  closeStagger: 0.04,
-  radius: 190 // increased distance so items map out a wide, breathable quadrant
-};
+const socialIconMap = { Linkedin, Instagram, Github, LucideBackpack, Download };
 
-const STYLES: Record<string, Record<string, string>> = {
-  trigger: {
-    container:
-      'rounded-full flex items-center bg-white text-black justify-center cursor-pointer outline-none ring-0 hover:scale-105 transition-all duration-100 z-50 shadow-xl border border-white/20',
-    active: 'bg-white'
-  },
-  item: {
-    container:
-      'rounded-full flex items-center justify-center absolute bg-black/80 border border-white/20 hover:bg-white/20 hover:border-white/50 backdrop-blur-md cursor-pointer text-white shadow-lg transition-colors group',
-    label:
-      'text-[10px] sm:text-xs font-bold text-white absolute top-full left-1/2 -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-black/60 backdrop-blur-md border border-white/10 px-2 py-1 rounded-md pointer-events-none'
-  }
-};
-
-const pointOnQuadrantBottomLeft = (i: number, n: number, r: number, cx = 0, cy = 0) => {
-  // We span from Top (-90 deg / -PI/2) to Right (0 deg / 0 rad)
-  const theta = -Math.PI / 1.8 + (Math.PI / 2) * (i / Math.max(1, n - 1));
-  const x = cx + r * Math.cos(theta);
-  const y = cy + r * Math.sin(theta);
-  return { x, y };
-};
-
-interface MenuItemProps {
-  icon: React.ReactNode;
-  label: string;
-  href: string;
-  index: number;
-  totalItems: number;
-  isOpen: boolean;
-  download?: boolean;
-}
-
-const MenuItem = ({ icon, label, href, index, totalItems, isOpen, download }: MenuItemProps) => {
-  const { x, y } = pointOnQuadrantBottomLeft(index, totalItems, CONSTANTS.radius);
-
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" download={download} className="absolute z-40 outline-none">
-      <motion.button
-        animate={{
-          x: isOpen ? x : 0,
-          y: isOpen ? y : 0,
-          opacity: isOpen ? 1 : 0,
-          scale: isOpen ? 1 : 0.5
-        }}
-        whileHover={{
-          scale: 1.15,
-          transition: { duration: 0.1 }
-        }}
-        transition={{
-          delay: isOpen ? index * CONSTANTS.openStagger : (totalItems - index) * CONSTANTS.closeStagger,
-          type: 'spring',
-          stiffness: 300,
-          damping: 20
-        }}
-        style={{
-          height: CONSTANTS.itemSize - 4,
-          width: CONSTANTS.itemSize - 4
-        }}
-        className={STYLES.item.container}
-      >
-        {icon}
-        <span className={STYLES.item.label}>{label}</span>
-      </motion.button>
-    </a>
-  );
-};
-
-interface MenuTriggerProps {
-  setIsOpen: (isOpen: boolean) => void;
-  isOpen: boolean;
-  itemsLength: number;
-}
-
-const MenuTrigger = ({ setIsOpen, isOpen, itemsLength }: MenuTriggerProps) => {
-  const animate = useAnimationControls();
-
-  return (
-    <motion.div className="z-50 relative">
-      <motion.button
-        animate={animate}
-        style={{
-          height: CONSTANTS.itemSize,
-          width: CONSTANTS.itemSize
-        }}
-        className={cn(STYLES.trigger.container, isOpen && STYLES.trigger.active)}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        <AnimatePresence mode="popLayout">
-          {isOpen ? (
-            <motion.span
-              key="menu-close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X size={20} className="text-black" />
-            </motion.span>
-          ) : (
-            <motion.span
-              key="menu-open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Menu size={20} className="text-black" />
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.button>
-    </motion.div>
-  );
-};
-
-import { defaultSocials, SocialItem } from '@/lib/default-data';
-
-const socialIconMap: Record<string, React.ReactNode> = {
-  Linkedin: <Linkedin size={18} />,
-  Instagram: <Instagram size={18} />,
-  Github: <Github size={18} />,
-  LucideBackpack: <LucideBackpack size={18} />,
-  Download: <Download size={18} />,
-};
-
-export const SocialQuadrantMenu = () => {
+export function SocialQuadrantMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const [socialItems, setSocialItems] = useState(() =>
-    defaultSocials.map((s) => ({
-      label: s.label || '',
-      icon: socialIconMap[s.iconName] || <Link2 size={18} />,
-      href: s.href,
-      download: s.download,
-    }))
-  );
+  const [socialItems, setSocialItems] = useState<SocialItem[]>(defaultSocials);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
-  React.useEffect(() => {
-    fetch('/api/socials', { cache: 'no-store' })
-      .then((res) => (res.ok ? res.json() : null))
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/socials", { signal: controller.signal })
+      .then((res) => res.ok ? res.json() : null)
       .then((data: SocialItem[]) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setSocialItems(
-            data.map((s) => ({
-              label: s.label || '',
-              icon: socialIconMap[s.iconName] || <Link2 size={18} />,
-              href: s.href,
-              download: s.download,
-            }))
-          );
-        }
+        if (Array.isArray(data) && data.length > 0) setSocialItems(data);
       })
-      .catch((err) => console.warn('Could not fetch socials from MongoDB, using fallback', err));
+      .catch(() => {});
+    return () => controller.abort();
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const dismiss = (event: PointerEvent) => {
+      if (event.target instanceof Node && !menuRef.current?.contains(event.target)) setIsOpen(false);
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", escape);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex items-center justify-center">
-      <motion.div className="absolute inset-0 flex items-center justify-center z-40">
-        {socialItems.map((item, index) => {
-          return (
-            <MenuItem
-              key={`menu-item-${index}`}
-              icon={item.icon}
-              label={item.label}
-              href={item.href}
-              index={index}
-              totalItems={socialItems.length}
-              isOpen={isOpen}
-              download={item.download}
-            />
-          );
-        })}
-      </motion.div>
-      <MenuTrigger
-        setIsOpen={setIsOpen}
-        isOpen={isOpen}
-        itemsLength={socialItems.length}
-      />
+    <div ref={menuRef} className="portfolio-socials">
+      {isOpen && (
+        <nav id="social-links" aria-label="Social links"
+          className="absolute bottom-full left-0 mb-3 w-60 max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain rounded-2xl border border-white/15 bg-neutral-950 p-2 text-white shadow-2xl">
+          {socialItems.map((item) => {
+            const Icon = socialIconMap[item.iconName as keyof typeof socialIconMap] || Link2;
+            return (
+              <a key={item.id} href={item.href} target="_blank" rel="noopener noreferrer" download={item.download}
+                onClick={() => setIsOpen(false)}
+                className="flex min-h-11 items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors hover:bg-white/10 focus-visible:bg-white/10">
+                <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                <span className="min-w-0 break-words">{item.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+      )}
+      <button ref={triggerRef} type="button" aria-label={isOpen ? "Close social links" : "Open social links"}
+        aria-expanded={isOpen} aria-controls="social-links" onClick={() => setIsOpen(!isOpen)}
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white text-black shadow-lg lg:h-12 lg:w-12">
+        {isOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
     </div>
   );
-};
+}

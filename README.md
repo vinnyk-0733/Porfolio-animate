@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 3D portfolio
 
-## Getting Started
+The Next.js application lives in `frontend`.
 
-First, run the development server:
+## Local setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Run `cd frontend`, then `npm install`.
+2. Copy `.env.example` to `.env.local`. Set `MONGODB_URI` and `MONGODB_DB` for your database.
+3. Generate a unique random `AUTH_SECRET` of at least 32 characters, and save it in `.env.local`:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```sh
+   node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Run `npm run db:password`. Enter and confirm a new admin password in the hidden prompt. It must contain at least 16 characters and at most 1024 UTF-8 bytes. For automation, supply `ADMIN_PASSWORD` through a protected process environment; do not pass the password as a command argument or commit it to a file.
+5. Run `npm run dev` and open [localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Keep `.env.local` private. Configure the same environment variables separately in your hosting provider before deploying. Missing credentials disable admin authentication; there is no default password or signing secret.
 
-## Learn More
+## Security migration
 
-To learn more about Next.js, take a look at the following resources:
+The previous version included exposed database credentials and a default admin password. Rotate the MongoDB user's credentials in your database provider, revoke the old credentials, and update your local and deployment environments. Removing a secret from source does not revoke it or remove it from Git history.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Existing admin password records are intentionally rejected. Run `npm run db:password` with a new unique password to replace the old record with a version 2 PBKDF2-SHA512 hash. Do not reuse the previous password. Set a new `AUTH_SECRET` as well; changing it invalidates existing admin sessions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Portfolio edits require an authenticated admin session. The `/api/seed` endpoint accepts authenticated `POST` requests only and replaces portfolio content with defaults; opening its URL with `GET` does not reset data. The local `npm run db:seed` script also replaces data and should only be used intentionally.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run `npm run test:security` from `frontend` to check authentication and endpoint protection using an isolated database substitute. Run `npm run build` to verify the production build.

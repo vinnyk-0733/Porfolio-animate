@@ -57,7 +57,7 @@ export function ConfirmDialog({
         }
       }}
     >
-      <div className="relative w-full max-w-md rounded-2xl border border-white/15 bg-neutral-950/95 p-6 text-white shadow-2xl backdrop-blur-2xl animate-in zoom-in-95 duration-150">
+      <div className="relative w-full max-w-md max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain rounded-2xl border border-white/15 bg-neutral-950 p-5 sm:p-6 text-white shadow-2xl animate-in zoom-in-95 duration-150">
         {/* Close Button */}
         <button
           type="button"

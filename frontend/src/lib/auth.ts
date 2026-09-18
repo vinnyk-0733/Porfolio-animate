@@ -1,100 +1,76 @@
-import crypto from "crypto";
+import crypto from "node:crypto";
+import { promisify } from "node:util";
 import { getDatabase } from "@/lib/mongodb";
 
-const DEFAULT_ADMIN_PASSWORD = "vinayakr073@s";
-const AUTH_SECRET = process.env.AUTH_SECRET || "vinaya-portfolio-secret-key-2026";
+export const SESSION_MAX_AGE = 7 * 24 * 60 * 60;
+const PASSWORD_ITERATIONS = 210000;
+const pbkdf2 = promisify(crypto.pbkdf2);
 
-// Hash a password using PBKDF2 with a random salt
-export function hashPassword(password: string): { hash: string; salt: string } {
-  const salt = crypto.randomBytes(16).toString("hex");
-  const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex");
-  return { hash, salt };
+function getAuthSecret(): string | null {
+  const secret = process.env.AUTH_SECRET;
+  return secret && Buffer.byteLength(secret.trim(), "utf8") >= 32 ? secret : null;
 }
 
-// Verify a password against stored hash and salt
-export function verifyPassword(password: string, hash: string, salt: string): boolean {
-  const verifyHash = crypto.pbkdf2Sync(password, salt, 10000, 64, "sha512").toString("hex");
-  return crypto.timingSafeEqual(Buffer.from(hash, "hex"), Buffer.from(verifyHash, "hex"));
+export function isAuthConfigured(): boolean {
+  return getAuthSecret() !== null;
 }
 
-// Generate a signed session token
 export function generateSessionToken(): string {
+  const secret = getAuthSecret();
+  if (!secret) throw new Error("Admin authentication is not configured");
+
   const payload = {
+    version: 2,
     role: "admin",
     timestamp: Date.now(),
-    nonce: crypto.randomBytes(8).toString("hex"),
+    nonce: crypto.randomBytes(16).toString("hex"),
   };
   const data = Buffer.from(JSON.stringify(payload)).toString("base64url");
-  const signature = crypto.createHmac("sha256", AUTH_SECRET).update(data).digest("base64url");
+  const signature = crypto.createHmac("sha256", secret).update(data).digest("base64url");
   return `${data}.${signature}`;
 }
 
-// Verify a session token (valid for 7 days)
 export function verifySessionToken(token: string): boolean {
-  if (!token || typeof token !== "string") return false;
+  const secret = getAuthSecret();
+  if (!secret || typeof token !== "string" || token.length > 1024) return false;
   const parts = token.split(".");
   if (parts.length !== 2) return false;
 
   const [data, signature] = parts;
-  const expectedSignature = crypto.createHmac("sha256", AUTH_SECRET).update(data).digest("base64url");
-  if (signature !== expectedSignature) return false;
+  if (!/^[A-Za-z0-9_-]+$/.test(data) || !/^[A-Za-z0-9_-]{43}$/.test(signature)) return false;
+  const expected = crypto.createHmac("sha256", secret).update(data).digest();
+  const actual = Buffer.from(signature, "base64url");
+  if (actual.length !== expected.length || !crypto.timingSafeEqual(actual, expected)) return false;
 
   try {
     const payload = JSON.parse(Buffer.from(data, "base64url").toString("utf8"));
-    if (payload.role !== "admin") return false;
-    const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
-    if (Date.now() - payload.timestamp > maxAge) return false;
-    return true;
+    if (!payload || payload.version !== 2 || payload.role !== "admin") return false;
+    if (!Number.isSafeInteger(payload.timestamp) || payload.timestamp <= 0) return false;
+    const age = Date.now() - payload.timestamp;
+    return age >= 0 && age < SESSION_MAX_AGE * 1000
+      && typeof payload.nonce === "string" && /^[a-f0-9]{32}$/.test(payload.nonce);
   } catch {
     return false;
   }
 }
 
-// Initialize admin auth in MongoDB if not already created
-export async function ensureAdminAuth(): Promise<void> {
-  try {
-    const db = await getDatabase();
-    if (!db) return;
-
-    const existing = await db.collection("admin_auth").findOne({});
-    if (!existing) {
-      const { hash, salt } = hashPassword(DEFAULT_ADMIN_PASSWORD);
-      await db.collection("admin_auth").insertOne({
-        username: "admin",
-        hash,
-        salt,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
-      console.log("Admin authentication initialized in MongoDB with encrypted password.");
-    }
-  } catch (err) {
-    console.warn("Could not ensure admin auth in MongoDB:", err);
-  }
-}
-
-// Check admin credentials against MongoDB
+// Only explicitly provisioned credentials are accepted. Legacy credentials may
+// contain the former public default password and must be reset with db:password.
 export async function authenticateAdmin(password: string): Promise<boolean> {
+  if (!isAuthConfigured() || typeof password !== "string" || !password || Buffer.byteLength(password) > 1024) return false;
+
   try {
     const db = await getDatabase();
-    if (!db) {
-      // Fallback: direct check against default password if database is offline
-      return password === DEFAULT_ADMIN_PASSWORD;
-    }
+    if (!db) return false;
+    const auth = await db.collection("admin_auth").findOne({ username: "admin" });
+    if (!auth || auth.passwordVersion !== 2 || auth.iterations !== PASSWORD_ITERATIONS
+      || typeof auth.hash !== "string" || !/^[a-f0-9]{128}$/.test(auth.hash)
+      || typeof auth.salt !== "string" || !/^[a-f0-9]{32}$/.test(auth.salt)) return false;
 
-    let authDoc = await db.collection("admin_auth").findOne({});
-    if (!authDoc) {
-      await ensureAdminAuth();
-      authDoc = await db.collection("admin_auth").findOne({});
-    }
-
-    if (!authDoc || !authDoc.hash || !authDoc.salt) {
-      return password === DEFAULT_ADMIN_PASSWORD;
-    }
-
-    return verifyPassword(password, authDoc.hash, authDoc.salt);
-  } catch (err) {
-    console.warn("Authentication verification error, using fallback:", err);
-    return password === DEFAULT_ADMIN_PASSWORD;
+    const candidate = await pbkdf2(password, auth.salt, PASSWORD_ITERATIONS, 64, "sha512");
+    return crypto.timingSafeEqual(Buffer.from(auth.hash, "hex"), candidate);
+  } catch {
+    // Database failures must never enable a fallback login.
+    return false;
   }
 }

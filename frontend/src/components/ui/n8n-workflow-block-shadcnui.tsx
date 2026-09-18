@@ -52,7 +52,7 @@ const STORAGE_SIZE_KEY = "n8n_experience_container_size_v1";
 const DEFAULT_HEIGHT = 520;
 const MIN_HEIGHT = 340;
 const MAX_HEIGHT = 1000;
-const MIN_WIDTH = 480;
+const MIN_WIDTH = 300;
 
 // Constants
 const NODE_WIDTH = 240;
@@ -402,7 +402,8 @@ export function N8nWorkflowBlock() {
 
         if (handleType === "both" || handleType === "width") {
           const maxAllowedWidth = Math.min(1400, window.innerWidth - 32);
-          nextWidth = Math.max(MIN_WIDTH, Math.min(maxAllowedWidth, Math.round(startWidth + deltaX)));
+          const effectiveMinWidth = Math.min(MIN_WIDTH, maxAllowedWidth);
+          nextWidth = Math.max(effectiveMinWidth, Math.min(maxAllowedWidth, Math.round(startWidth + deltaX)));
         }
 
         if (handleType === "both" || handleType === "height") {
@@ -682,7 +683,7 @@ export function N8nWorkflowBlock() {
       <div
         ref={canvasRef}
         className="relative flex-1 w-full h-full overflow-auto rounded-xl border border-white/10 bg-black/40 shadow-inner [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.2)_transparent]"
-        style={{ touchAction: "none" }}
+        style={{ touchAction: "pan-x pan-y" }}
       >
         <div
           className="relative transition-[width,height] duration-150"

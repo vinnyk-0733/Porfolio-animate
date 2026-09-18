@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { Lock, Unlock, Eye, EyeOff, X, Check, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
@@ -36,6 +36,15 @@ const AdminContext = createContext<AdminContextType>({
 
 export const useAdmin = () => useContext(AdminContext);
 
+function clearLegacyAuth() {
+  try {
+    localStorage.removeItem("portfolio_admin_auth");
+    localStorage.removeItem("portfolio_admin_token");
+  } catch {
+    // Authentication still works when browser storage is unavailable.
+  }
+}
+
 export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -43,69 +52,87 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const authRequestVersion = useRef(0);
 
-  // Check auth status on mount
+  // Only the server can confirm the HttpOnly session cookie.
   useEffect(() => {
-    // Check localStorage first
-    const localAuth = localStorage.getItem("portfolio_admin_auth");
-    if (localAuth === "true") {
-      setIsAdmin(true);
-    }
+    clearLegacyAuth();
+    const controller = new AbortController();
+    const requestVersion = ++authRequestVersion.current;
 
-    // Verify with API
-    fetch("/api/auth")
+    fetch("/api/auth", {
+      credentials: "same-origin",
+      cache: "no-store",
+      signal: controller.signal,
+    })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data?.authenticated) {
-          setIsAdmin(true);
-          localStorage.setItem("portfolio_admin_auth", "true");
-        } else if (localAuth !== "true") {
-          setIsAdmin(false);
+        if (!controller.signal.aborted && requestVersion === authRequestVersion.current) {
+          setIsAdmin(data?.authenticated === true);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (!controller.signal.aborted && requestVersion === authRequestVersion.current) {
+          setIsAdmin(false);
+        }
+      });
+
+    return () => controller.abort();
   }, []);
 
   const login = async (pwd: string) => {
+    const requestVersion = ++authRequestVersion.current;
     setLoading(true);
     setError(null);
     try {
       const res = await fetch("/api/auth", {
         method: "POST",
+        credentials: "same-origin",
+        cache: "no-store",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: pwd }),
       });
       const data = await res.json();
+      if (requestVersion !== authRequestVersion.current) {
+        return { success: false };
+      }
 
-      if (data.success) {
+      if (res.ok && data?.success === true) {
         setIsAdmin(true);
-        localStorage.setItem("portfolio_admin_auth", "true");
-        if (data.token) {
-          localStorage.setItem("portfolio_admin_token", data.token);
-        }
         setIsLoginModalOpen(false);
         setPassword("");
         return { success: true };
       } else {
-        const errMsg = data.error || "Incorrect password";
+        setIsAdmin(false);
+        const errMsg = typeof data?.error === "string" ? data.error : "Login request failed";
         setError(errMsg);
         return { success: false, error: errMsg };
       }
-    } catch (err: any) {
-      const errMsg = err.message || "Login request failed";
-      setError(errMsg);
+    } catch {
+      const errMsg = "Login request failed. Please try again.";
+      if (requestVersion === authRequestVersion.current) {
+        setIsAdmin(false);
+        setError(errMsg);
+      }
       return { success: false, error: errMsg };
     } finally {
-      setLoading(false);
+      if (requestVersion === authRequestVersion.current) {
+        setLoading(false);
+      }
     }
   };
 
   const logout = async () => {
+    ++authRequestVersion.current;
     setIsAdmin(false);
-    localStorage.removeItem("portfolio_admin_auth");
-    localStorage.removeItem("portfolio_admin_token");
+    setLoading(false);
+    clearLegacyAuth();
     try {
-      await fetch("/api/auth", { method: "DELETE" });
+      await fetch("/api/auth", {
+        method: "DELETE",
+        credentials: "same-origin",
+        cache: "no-store",
+      });
     } catch {}
   };
 
@@ -200,11 +227,12 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       )}
 
       {/* Floating Bottom-Right Admin Lock/Unlock Trigger */}
-      <div className="fixed bottom-6 right-6 z-50 pointer-events-auto">
+      <div className="portfolio-admin pointer-events-auto">
         <button
           onClick={isAdmin ? logout : openLoginModal}
           title={isAdmin ? "Edit Mode Active (Click to Log Out)" : "Admin Edit Mode"}
-          className={`h-12 w-12 rounded-full flex items-center justify-center backdrop-blur-xl border transition-all duration-300 shadow-2xl ${
+          aria-label={isAdmin ? "Log out of edit mode" : "Admin sign in"}
+          className={`h-11 w-11 lg:h-12 lg:w-12 rounded-full flex items-center justify-center bg-neutral-950 border transition-colors duration-150 shadow-lg ${
             isAdmin
               ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400 hover:scale-105 hover:bg-emerald-500/30"
               : "bg-white/10 border-white/20 text-white/70 hover:text-white hover:bg-white/20 hover:scale-105"
@@ -218,7 +246,10 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       {isLoginModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
           <div
-            className="relative w-full max-w-md rounded-2xl border border-white/15 bg-neutral-950/90 p-6 sm:p-8 text-white shadow-2xl backdrop-blur-2xl"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Admin sign in"
+            className="relative w-full max-w-md max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain rounded-2xl border border-white/15 bg-neutral-950 p-5 sm:p-8 text-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
