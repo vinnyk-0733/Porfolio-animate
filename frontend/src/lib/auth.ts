@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { getDatabase } from "@/lib/mongodb";
 
-const DEFAULT_ADMIN_PASSWORD = "vinayak073s";
+const DEFAULT_ADMIN_PASSWORD = "vinayakr073@s";
 const AUTH_SECRET = process.env.AUTH_SECRET || "vinaya-portfolio-secret-key-2026";
 
 // Hash a password using PBKDF2 with a random salt

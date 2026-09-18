@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "node scripts/seed.mjs"
+    "db:seed": "node scripts/seed.mjs",
+    "db:password": "node scripts/set-password.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
