@@ -20,7 +20,7 @@ export default function Home() {
         className="w-full min-h-screen bg-black text-white"
       >
         <ProfileHero />
-        <div id="resume" className="min-h-screen relative flex items-center justify-center">
+        <div id="resume" className="min-h-screen relative flex items-center justify-center pt-8 pb-28 sm:py-0">
           <ResumeDemo />
         </div>
       </SonarGrid>

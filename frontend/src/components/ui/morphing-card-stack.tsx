@@ -72,11 +72,15 @@ export function MorphingCardStack({
   const getLayoutStyles = (stackPosition: number) => {
     switch (layout) {
       case "stack":
+        // Only show top 4 cards to keep deck neat and prevent visual clutter
+        const clampedPos = Math.min(stackPosition, 3)
         return {
-          top: stackPosition * 8,
-          left: stackPosition * 8,
+          top: clampedPos * 10,
+          left: clampedPos * 8,
           zIndex: cards.length - stackPosition,
-          rotate: (stackPosition - 1) * 2,
+          rotate: (clampedPos - 1) * 2.5,
+          scale: 1 - clampedPos * 0.035,
+          opacity: stackPosition > 3 ? 0 : 1,
         }
       case "grid":
         return {
@@ -84,6 +88,8 @@ export function MorphingCardStack({
           left: 0,
           zIndex: 1,
           rotate: 0,
+          scale: 1,
+          opacity: 1,
         }
       case "list":
         return {
@@ -91,12 +97,14 @@ export function MorphingCardStack({
           left: 0,
           zIndex: 1,
           rotate: 0,
+          scale: 1,
+          opacity: 1,
         }
     }
   }
 
   const containerStyles = {
-    stack: "relative h-80 w-72 sm:h-96 sm:w-80",
+    stack: "relative h-80 w-[18rem] sm:h-96 sm:w-84 max-w-[90vw]",
     grid: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
     list: "flex flex-col gap-4 max-w-2xl",
   }
@@ -106,7 +114,7 @@ export function MorphingCardStack({
   return (
     <div className={cn("space-y-8", className)}>
       {/* Layout Toggle */}
-      <div className="flex items-center justify-center gap-1 rounded-full bg-white/5 border border-white/10 p-1.5 w-fit mx-auto backdrop-blur-md">
+      <div className="flex items-center justify-center gap-1 rounded-full bg-neutral-900/80 border border-white/10 p-1.5 w-fit mx-auto backdrop-blur-md shadow-xl">
         {(Object.keys(layoutIcons) as LayoutMode[]).map((mode) => {
           const Icon = layoutIcons[mode]
           return (
@@ -135,6 +143,7 @@ export function MorphingCardStack({
               const styles = getLayoutStyles(card.stackPosition)
               const isExpanded = expandedCard === card.id
               const isTopCard = layout === "stack" && card.stackPosition === 0
+              const isStackHidden = layout === "stack" && card.stackPosition > 3
 
               return (
                 <motion.div
@@ -142,10 +151,9 @@ export function MorphingCardStack({
                   layoutId={card.id}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{
-                    opacity: 1,
-                    scale: isExpanded ? 1.02 : 1,
-                    x: 0,
                     ...styles,
+                    scale: isExpanded ? 1.02 : styles.scale ?? 1,
+                    x: 0,
                   }}
                   exit={{ opacity: 0, scale: 0.8, x: -200 }}
                   transition={{
@@ -161,6 +169,11 @@ export function MorphingCardStack({
                   whileDrag={{ scale: 1.05, cursor: "grabbing" }}
                   onClick={() => {
                     if (isDragging) return
+                    // In stack mode, clicking a layered card brings it to top
+                    if (layout === "stack" && !isTopCard) {
+                      setActiveIndex((prev) => (prev + card.stackPosition) % cards.length)
+                      return
+                    }
                     onCardClick?.(card)
                   }}
                   onDoubleClick={() => {
@@ -168,75 +181,87 @@ export function MorphingCardStack({
                     setExpandedCard(card.id)
                   }}
                   className={cn(
-                    "cursor-pointer rounded-2xl border border-white/10 bg-black/40 mobile-glass backdrop-blur-sm p-6 shadow-xl touch-pan-y",
-                    "hover:border-white/30 transition-colors flex flex-col group",
-                    layout === "stack" && "absolute w-72 h-80 sm:w-80 sm:h-96 origin-bottom-right",
-                    layout === "stack" && isTopCard && "cursor-grab active:cursor-grabbing hover:shadow-2xl hover:shadow-white/10",
+                    "cursor-pointer rounded-2xl border border-white/15 bg-neutral-900 shadow-2xl p-5 sm:p-6 flex flex-col group transition-colors",
+                    layout === "stack" && "absolute w-[18rem] h-80 sm:w-84 sm:h-96 origin-bottom-right",
+                    layout === "stack" && isTopCard && "cursor-grab active:cursor-grabbing hover:shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-500/30",
+                    layout === "stack" && !isTopCard && "hover:border-white/30",
                     layout === "grid" && "w-full aspect-square sm:aspect-auto sm:h-72",
                     layout === "list" && "w-full",
-                    isExpanded && "opacity-0 pointer-events-none", // Hide the original when expanded so it transitions cleanly to modal
+                    isExpanded && "opacity-0 pointer-events-none",
+                    isStackHidden && "pointer-events-none select-none",
                   )}
                   style={{
-                    backgroundColor: card.color || undefined,
+                    backgroundColor: "#141416",
+                    backgroundImage: card.color
+                      ? `radial-gradient(circle at top left, ${card.color}, transparent 70%), linear-gradient(180deg, #18181b 0%, #0d0d10 100%)`
+                      : `linear-gradient(180deg, #18181b 0%, #0d0d10 100%)`,
                   }}
                 >
-                  <div className="flex items-start gap-4">
-                    {card.icon && (
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white shadow-inner border border-white/5">
-                        {card.icon}
+                  {/* Card Content - Hidden on layered cards in stack view to prevent text overlap */}
+                  <div
+                    className={cn(
+                      "flex flex-col h-full transition-opacity duration-300",
+                      layout === "stack" && !isTopCard && "opacity-0 select-none pointer-events-none invisible"
+                    )}
+                  >
+                    <div className="flex items-start gap-4">
+                      {card.icon && (
+                        <div className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white shadow-inner border border-white/10">
+                          {card.icon}
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-base sm:text-lg font-bold text-white truncate drop-shadow-sm">{card.title}</h3>
+                        <p
+                          className={cn(
+                            "text-xs sm:text-sm text-neutral-400 mt-2 leading-relaxed transition-all",
+                            layout === "stack" && "line-clamp-5 sm:line-clamp-6",
+                            layout === "grid" && "line-clamp-4",
+                            layout === "list" && (isExpanded ? "" : "line-clamp-2"),
+                          )}
+                        >
+                          {card.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex-grow" />
+
+                    {card.link && layout !== "stack" && (
+                      <div className="mt-4 pt-3 border-t border-white/10 flex justify-end">
+                        <a 
+                          href={card.link} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors py-1.5 px-3.5 rounded-full bg-white/5 hover:bg-white/10"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          View Credential <ExternalLink className="h-3 w-3" />
+                        </a>
                       </div>
                     )}
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-lg font-bold text-white truncate drop-shadow-sm">{card.title}</h3>
-                      <p
-                        className={cn(
-                          "text-sm text-neutral-400 mt-2 leading-relaxed transition-all",
-                          layout === "stack" && "line-clamp-6",
-                          layout === "grid" && "line-clamp-4",
-                          layout === "list" && (isExpanded ? "" : "line-clamp-2"),
-                        )}
-                      >
-                        {card.description}
-                      </p>
-                    </div>
+
+                    {card.link && layout === "stack" && isTopCard && (
+                       <div className="mt-auto pt-4 flex justify-between items-center w-full">
+                         <span className="text-[11px] text-white/40 tracking-widest uppercase font-semibold">Swipe / Click</span>
+                         <a 
+                          href={card.link} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-full border border-emerald-500/20"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Credential <ExternalLink className="h-3 w-3" />
+                        </a>
+                       </div>
+                    )}
+
+                    {layout === "stack" && isTopCard && !card.link && (
+                      <div className="mt-auto pt-4 text-center pointer-events-none">
+                        <span className="text-[11px] text-white/40 tracking-widest uppercase font-semibold">Swipe to Navigate</span>
+                      </div>
+                    )}
                   </div>
-
-                  <div className="flex-grow" />
-
-                  {card.link && layout !== "stack" && (
-                    <div className="mt-6 pt-4 border-t border-white/10 flex justify-end">
-                      <a 
-                        href={card.link} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors py-2 px-4 rounded-full bg-white/5 hover:bg-white/10"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        View Credential <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </div>
-                  )}
-
-                  {card.link && layout === "stack" && isTopCard && (
-                     <div className="mt-auto pt-4 flex justify-between items-center w-full">
-                       <span className="text-xs text-white/30 tracking-widest uppercase font-semibold">Swipe</span>
-                       <a 
-                        href={card.link} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-white hover:text-white/80 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Credential <ExternalLink className="h-3 w-3" />
-                      </a>
-                     </div>
-                  )}
-
-                  {layout === "stack" && isTopCard && !card.link && (
-                    <div className="absolute bottom-4 left-0 right-0 text-center pointer-events-none">
-                      <span className="text-xs text-white/30 tracking-widest uppercase font-semibold">Swipe to Navigate</span>
-                    </div>
-                  )}
                 </motion.div>
               )
             })}
@@ -278,9 +303,12 @@ export function MorphingCardStack({
                 <motion.div
                   layoutId={card.id}
                   onClick={(e) => e.stopPropagation()}
-                  className="w-full max-w-2xl rounded-3xl border border-white/20 bg-black/90 p-8 sm:p-12 shadow-2xl relative flex flex-col"
+                  className="w-full max-w-2xl rounded-3xl border border-white/20 bg-neutral-950 p-6 sm:p-10 shadow-2xl relative flex flex-col"
                   style={{
-                    backgroundColor: card.color || undefined,
+                    backgroundColor: "#121215",
+                    backgroundImage: card.color
+                      ? `radial-gradient(circle at top left, ${card.color}, transparent 75%), linear-gradient(180deg, #18181b 0%, #0d0d10 100%)`
+                      : `linear-gradient(180deg, #18181b 0%, #0d0d10 100%)`,
                   }}
                 >
                   <div className="flex items-start gap-6 flex-col sm:flex-row">

@@ -48,7 +48,7 @@ export default function RadialOrbitalTimeline({
 
   const updatePositions = useCallback(() => {
     const w = typeof window !== "undefined" ? window.innerWidth : 1200;
-    const radius = w < 480 ? 115 : w < 768 ? 165 : w < 1024 ? 205 : 240;
+    const radius = w < 380 ? 98 : w < 480 ? 106 : w < 768 ? 165 : w < 1024 ? 205 : 240;
     const radians = (rotationAngleRef.current * Math.PI) / 180;
     const sine = Math.sin(radians);
     const cosine = Math.cos(radians);
@@ -148,9 +148,9 @@ export default function RadialOrbitalTimeline({
   };
 
   return (
-    <div className={`relative w-full flex flex-col items-center justify-center ${className}`}>
+    <div className={`relative w-full flex flex-col items-center justify-center -translate-y-6 sm:translate-y-0 ${className}`}>
       <div
-        className="relative w-[300px] h-[300px] sm:w-[440px] sm:h-[440px] md:w-[560px] md:h-[560px] lg:w-[650px] lg:h-[650px] rounded-full flex items-center justify-center z-10 [--orbit-radius:115px] min-[480px]:[--orbit-radius:165px] md:[--orbit-radius:205px] lg:[--orbit-radius:240px]"
+        className="relative w-[280px] h-[280px] sm:w-[440px] sm:h-[440px] md:w-[560px] md:h-[560px] lg:w-[650px] lg:h-[650px] rounded-full flex items-center justify-center z-10"
         ref={containerRef}
         onClick={handleContainerClick}
       >
@@ -160,17 +160,22 @@ export default function RadialOrbitalTimeline({
           style={{ perspective: "1000px" }}
         >
           {/* Central Glowing Core Orb */}
-          <div className="absolute w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 animate-pulse flex items-center justify-center z-10 shadow-[0_0_50px_rgba(16,185,129,0.5)] pointer-events-auto">
-            <div className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-emerald-400/30 animate-ping opacity-70"></div>
+          <div className="absolute w-12 h-12 sm:w-18 sm:h-18 rounded-full bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 animate-pulse flex items-center justify-center z-10 shadow-[0_0_50px_rgba(16,185,129,0.5)] pointer-events-auto">
+            <div className="absolute w-18 h-18 sm:w-24 sm:h-24 rounded-full border border-emerald-400/30 animate-ping opacity-70"></div>
             <div
-              className="absolute w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-teal-400/20 animate-ping opacity-40"
+              className="absolute w-22 h-22 sm:w-28 sm:h-28 rounded-full border border-teal-400/20 animate-ping opacity-40"
               style={{ animationDelay: "0.5s" }}
             ></div>
-            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/90 shadow-inner"></div>
+            <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-white/90 shadow-inner"></div>
           </div>
 
-          {/* Orbital Circle Boundary */}
-          <div className="absolute w-[290px] h-[290px] sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px] rounded-full border border-white/10 bg-black/40 backdrop-blur-sm shadow-[0_0_80px_rgba(0,0,0,0.8)]"></div>
+          {/* Orbital Circle Boundary with solid dark mask against SonarGrid background dots */}
+          <div 
+            className="absolute w-[265px] h-[265px] sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px] rounded-full border border-emerald-500/25 shadow-[0_0_80px_rgba(0,0,0,0.95)] pointer-events-none"
+            style={{
+              background: "radial-gradient(circle at center, rgba(6, 78, 59, 0.28) 0%, rgba(10, 10, 14, 0.94) 55%, rgba(0, 0, 0, 0.98) 100%)",
+            }}
+          />
 
           {/* Orbit Nodes */}
           {timelineData.map((item) => {
@@ -198,8 +203,8 @@ export default function RadialOrbitalTimeline({
                   className={`absolute rounded-full -inset-1.5 ${isPulsing ? "animate-pulse duration-1000" : ""}`}
                   style={{
                     background: `radial-gradient(circle, rgba(16,185,129,0.3) 0%, rgba(16,185,129,0) 70%)`,
-                    width: `${item.energy * 0.4 + 52}px`,
-                    height: `${item.energy * 0.4 + 52}px`,
+                    width: `${item.energy * 0.4 + 48}px`,
+                    height: `${item.energy * 0.4 + 48}px`,
                     left: `-${(item.energy * 0.4) / 2}px`,
                     top: `-${(item.energy * 0.4) / 2}px`,
                   }}
@@ -208,7 +213,7 @@ export default function RadialOrbitalTimeline({
                 {/* Node Icon Circle */}
                 <div
                   className={`
-                    w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center
+                    w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center
                     ${
                       isExpanded
                         ? "bg-emerald-400 text-black border-emerald-300 shadow-[0_0_25px_rgba(52,211,153,0.8)]"
@@ -220,16 +225,16 @@ export default function RadialOrbitalTimeline({
                     ${isExpanded ? "scale-115" : "hover:scale-105"}
                   `}
                 >
-                  <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <Icon className="w-4 h-4 sm:w-6 sm:h-6" />
                 </div>
 
                 {/* Node Title Label */}
                 <div
                   className={`
-                    absolute top-13 sm:top-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-center
-                    text-xs sm:text-sm font-bold tracking-wider
+                    absolute top-11 sm:top-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-center
+                    text-[11px] sm:text-sm font-bold tracking-wider
                     transition-all pointer-events-none duration-300
-                    ${isExpanded ? "opacity-0 scale-95" : "opacity-100 text-white/80 drop-shadow"}
+                    ${isExpanded ? "opacity-0 scale-95" : "opacity-100 text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"}
                   `}
                 >
                   {item.title}
@@ -237,8 +242,8 @@ export default function RadialOrbitalTimeline({
 
                 {/* Detail Card Overlay on Expand */}
                 {isExpanded && (
-                  <Card className="absolute top-[72px] sm:top-[88px] left-1/2 -translate-x-1/2 w-[88vw] max-w-[360px] sm:w-96 max-h-[65vh] overflow-y-auto bg-neutral-950/95 border border-emerald-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-50 rounded-2xl pointer-events-auto backdrop-blur-xl">
-                    <div className="absolute -top-[32px] left-1/2 -translate-x-1/2 w-px h-[32px] bg-emerald-400/60"></div>
+                  <Card className="absolute top-[60px] sm:top-[88px] left-1/2 -translate-x-1/2 w-[90vw] max-w-[360px] sm:w-96 max-h-[60vh] overflow-y-auto bg-neutral-950/98 border border-emerald-500/40 shadow-[0_20px_60px_rgba(0,0,0,0.95)] z-50 rounded-2xl pointer-events-auto backdrop-blur-xl">
+                    <div className="absolute -top-[24px] sm:-top-[32px] left-1/2 -translate-x-1/2 w-px h-[24px] sm:h-[32px] bg-emerald-400/60"></div>
                     <CardHeader className="pb-2">
                       <div className="flex justify-between items-center">
                         <Badge className={`px-2 text-xs ${getStatusStyles(item.status)}`}>

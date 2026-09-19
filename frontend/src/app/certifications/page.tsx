@@ -157,13 +157,13 @@ export default function CertificationsPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center p-6 sm:p-12 md:p-24 selection:bg-white/20">
+    <main className="relative min-h-screen bg-black overflow-y-auto flex flex-col items-center justify-start sm:justify-center p-4 sm:p-8 md:p-16 pt-16 pb-36 sm:pb-28 selection:bg-white/20">
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center h-full pointer-events-auto mt-20 md:mt-0">
-        <div className="w-full flex justify-between items-center mb-12 sm:mb-16">
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center h-full pointer-events-auto">
+        <div className="w-full flex justify-between items-center mb-8 sm:mb-12">
           <Link
             href="/"
-            className="text-white/50 hover:text-white transition-colors inline-flex items-center gap-2 text-sm backdrop-blur-md bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 shadow-xl"
+            className="text-white/60 hover:text-white transition-colors inline-flex items-center gap-2 text-xs sm:text-sm backdrop-blur-md bg-white/5 hover:bg-white/10 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10 shadow-xl"
           >
             <ArrowLeft size={16} /> Back to Hub
           </Link>
@@ -190,16 +190,16 @@ export default function CertificationsPage() {
           )}
         </div>
 
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-neutral-500 tracking-tight drop-shadow-sm mb-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-neutral-500 tracking-tight drop-shadow-sm mb-3 sm:mb-6">
             Certifications
           </h1>
-          <p className="text-neutral-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed font-light">
+          <p className="text-neutral-400 max-w-2xl mx-auto text-xs sm:text-base md:text-lg leading-relaxed font-light px-2">
             A comprehensive record of standard professional validations, showcasing recognized expertise across cloud infrastructure, machine learning, and orchestration ecosystems.
           </p>
         </div>
 
-        <div className="w-full flex-grow flex flex-col items-center justify-center min-h-[500px]">
+        <div className="w-full flex-grow flex flex-col items-center justify-center min-h-[460px]">
           <MorphingCardStack cards={mapCertifications(certItems)} defaultLayout="stack" />
         </div>
       </div>
