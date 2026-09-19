@@ -1,11 +1,3 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "deploymentProtection": {
-    "overrides": [
-      {
-        "path": "/api/**",
-        "protection": "none"
-      }
-    ]
-  }
 }
