@@ -6,49 +6,13 @@ import { ChevronDown, Pencil, X, Check, Plus, Trash2 } from "lucide-react";
 import { defaultProfile } from "@/lib/default-data";
 import { useAdmin } from "@/context/admin-context";
 import { Button } from "@/components/ui/button";
+import { Typewriter } from "@/components/ui/typewriter";
 
 const CyberneticGridShader = dynamic(
   () => import("@/components/ui/cybernetic-grid-shader"),
   { ssr: false }
 );
 
-function Typewriter({ words }: { words: string[] }) {
-  const [text, setText] = useState("");
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    if (!words || words.length === 0) return;
-    const currentWord = words[wordIndex % words.length];
-    let timeout: NodeJS.Timeout;
-
-    if (isDeleting) {
-      timeout = setTimeout(() => {
-        setText(currentWord.substring(0, text.length - 1));
-        if (text.length === 0) {
-          setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }, 40);
-    } else {
-      timeout = setTimeout(() => {
-        setText(currentWord.substring(0, text.length + 1));
-        if (text.length === currentWord.length) {
-          timeout = setTimeout(() => setIsDeleting(true), 2500);
-        }
-      }, 75);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex, words]);
-
-  return (
-    <span className="inline-block">
-      {text}
-      <span className="animate-[pulse_1s_ease-in-out_infinite] opacity-70 ml-1">|</span>
-    </span>
-  );
-}
 
 export function ProfileHero() {
   const { isAdmin, editFetch } = useAdmin();
@@ -158,7 +122,7 @@ export function ProfileHero() {
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 min-h-[3em] sm:min-h-[2em] lg:min-h-[2.5em] flex items-center font-sans tracking-tight drop-shadow-lg">
           <Typewriter words={words} />
         </h1>
-        <p className="mt-4 text-neutral-300 max-w-xl text-lg md:text-xl leading-relaxed backdrop-blur-sm bg-black/40 p-6 rounded-2xl border border-white/10 shadow-2xl pointer-events-auto relative">
+        <p className="mt-4 text-neutral-300 max-w-xl text-lg md:text-xl leading-relaxed mobile-glass backdrop-blur-sm bg-black/40 p-6 rounded-2xl border border-white/10 shadow-2xl pointer-events-auto relative">
           {bio}
         </p>
 

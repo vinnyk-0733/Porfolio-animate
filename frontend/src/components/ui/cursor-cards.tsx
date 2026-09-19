@@ -36,12 +36,29 @@ function useMousePosition(proximityRange: number) {
     isWithinRange: false,
   })
 
-  const handlePointerMovement = useCallback(
-    (event: PointerEvent) => {
+  useEffect(() => {
+    // Touch devices and small screens don't have hover cursors
+    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches
+    if (isTouch) return
+
+    let rafId = 0
+    let cachedBounds: DOMRect | null = null
+
+    const invalidateBounds = () => { cachedBounds = null }
+    window.addEventListener("resize", invalidateBounds, { passive: true })
+    window.addEventListener("scroll", invalidateBounds, { passive: true })
+
+    const handlePointerMovement = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return
       if (!wrapperRef.current) return
 
-      const bounds = wrapperRef.current.getBoundingClientRect()
-      const { clientX, clientY } = event
+      if (!cachedBounds) {
+        cachedBounds = wrapperRef.current.getBoundingClientRect()
+      }
+
+      const clientX = event.clientX
+      const clientY = event.clientY
+      const bounds = cachedBounds
 
       const isInProximity =
         clientX >= bounds.left - proximityRange &&
@@ -49,20 +66,25 @@ function useMousePosition(proximityRange: number) {
         clientY >= bounds.top - proximityRange &&
         clientY <= bounds.bottom + proximityRange
 
-      setMouseState({
-        mousePositionX: clientX,
-        mousePositionY: clientY,
-        isWithinRange: isInProximity,
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        rafId = 0
+        setMouseState({
+          mousePositionX: clientX,
+          mousePositionY: clientY,
+          isWithinRange: isInProximity,
+        })
       })
-    },
-    [proximityRange]
-  )
+    }
 
-  useEffect(() => {
-    document.addEventListener("pointermove", handlePointerMovement)
-    return () =>
+    document.addEventListener("pointermove", handlePointerMovement, { passive: true })
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      window.removeEventListener("resize", invalidateBounds)
+      window.removeEventListener("scroll", invalidateBounds)
       document.removeEventListener("pointermove", handlePointerMovement)
-  }, [handlePointerMovement])
+    }
+  }, [proximityRange])
 
   return { wrapperRef, mouseState }
 }
@@ -80,7 +102,7 @@ function useCardActivation(
 
   useEffect(() => {
     if (!elementRef.current || !isWithinRange) {
-      setIsCardActive(false)
+      if (isCardActive) setIsCardActive(false)
       localMouseX.set(-illuminationRadius)
       localMouseY.set(-illuminationRadius)
       return
@@ -95,7 +117,9 @@ function useCardActivation(
       globalMouseY >= rect.top - extendedProximity &&
       globalMouseY <= rect.bottom + extendedProximity
 
-    setIsCardActive(isNearCard)
+    if (isNearCard !== isCardActive) {
+      setIsCardActive(isNearCard)
+    }
 
     if (isNearCard) {
       localMouseX.set(globalMouseX - rect.left)
@@ -111,6 +135,8 @@ function useCardActivation(
     illuminationRadius,
     localMouseX,
     localMouseY,
+    isCardActive,
+    elementRef,
   ])
 
   return { localMouseX, localMouseY, isCardActive }
@@ -188,7 +214,7 @@ export function CursorCard({
         className="pointer-events-none absolute inset-0 rounded-[inherit]"
         style={{ background: gradientBackground }}
       />
-      <div className="absolute inset-px rounded-[inherit] bg-black/90 backdrop-blur-sm" />
+      <div className="absolute inset-px rounded-[inherit] bg-black/90 mobile-glass backdrop-blur-sm" />
       <motion.div
         className={cn(
           "pointer-events-none absolute inset-px rounded-[inherit] opacity-0 transition-opacity duration-300",

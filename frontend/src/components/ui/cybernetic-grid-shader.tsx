@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { watchVisualActivity } from "@/lib/visual-activity";
 
 interface CyberneticGridShaderProps {
   className?: string;
@@ -23,17 +24,21 @@ const CyberneticGridShader: React.FC<CyberneticGridShaderProps> = ({
     if (!container) return;
 
     // ── Renderer (low-power GPU preference) ──
-    const renderer = new THREE.WebGLRenderer({
-      antialias: false, // skip AA for a background shader
-      alpha: true,
-      powerPreference: "low-power",
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: false, // skip AA for a background shader
+        alpha: true,
+        powerPreference: "low-power",
+      });
+    } catch {
+      // Keep the page usable on devices without an available WebGL context.
+      return;
+    }
     container.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const clock = new THREE.Clock();
 
     // ── GLSL ──
     const vertexShader = /* glsl */ `
@@ -99,63 +104,106 @@ const CyberneticGridShader: React.FC<CyberneticGridShaderProps> = ({
     const mesh     = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    // ── Resize (fill parent container) ──
+    let active = false;
+    let reducedMotion = false;
+    let touch = false;
+    let compact = false;
+    let contextLost = false;
+    let frame = 0;
+    let lastTime = 0;
+    let pixelRatio = 1;
+    let listeningForMouse = false;
+
+    const stop = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+      lastTime = 0;
+    };
+
+    const render = (time: number) => {
+      frame = 0;
+      if (!active || contextLost) return;
+      if (!reducedMotion && lastTime) {
+        // Do not fast-forward the animation after scrolling or a hidden tab.
+        uniforms.iTime.value += Math.min((time - lastTime) / 1000, 0.05);
+      }
+      lastTime = time;
+      renderer.render(scene, camera);
+      if (!reducedMotion) frame = requestAnimationFrame(render);
+    };
+
+    const requestRender = () => {
+      if (active && !contextLost && !frame) frame = requestAnimationFrame(render);
+    };
+
+    // ── Resize (CSS dimensions and drawing-buffer dimensions stay in sync) ──
     const onResize = () => {
       const w = container.clientWidth;
       const h = container.clientHeight;
       if (w === 0 || h === 0) return;
-      renderer.setSize(w, h);
-      uniforms.iResolution.value.set(
-        w * Math.min(window.devicePixelRatio, maxDpr),
-        h * Math.min(window.devicePixelRatio, maxDpr),
-      );
+      const cap = Math.min(maxDpr, compact || touch ? 1 : 1.5);
+      pixelRatio = Math.min(window.devicePixelRatio || 1, Math.max(0.5, cap));
+      renderer.setPixelRatio(pixelRatio);
+      renderer.setSize(w, h, false);
+      renderer.domElement.style.width = "100%";
+      renderer.domElement.style.height = "100%";
+      renderer.getDrawingBufferSize(uniforms.iResolution.value);
+      requestRender();
     };
 
-    const ro = new ResizeObserver(() => onResize());
-    ro.observe(container);
-    onResize();
-
-    // ── Mouse (throttled via rAF) ──
-    let mouseRaf = 0;
+    // Uniform updates are consumed by the existing frame, without React renders
+    // or a second animation loop. Touch scrolling never installs this listener.
     const onMouseMove = (e: MouseEvent) => {
-      if (mouseRaf) return;
-      mouseRaf = requestAnimationFrame(() => {
-        mouseRaf = 0;
-        uniforms.iMouse.value.set(
-          e.clientX * Math.min(window.devicePixelRatio, maxDpr),
-          (container.clientHeight - e.clientY) * Math.min(window.devicePixelRatio, maxDpr),
-        );
-      });
-    };
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
-
-    // ── Visibility: pause when off-screen ──
-    let isVisible = true;
-    let observer: IntersectionObserver | null = null;
-
-    if (pauseOffscreen) {
-      observer = new IntersectionObserver(
-        ([entry]) => { isVisible = entry.isIntersecting; },
-        { threshold: 0.05 },
+      if (!active) return;
+      const bounds = container.getBoundingClientRect();
+      uniforms.iMouse.value.set(
+        (e.clientX - bounds.left) * pixelRatio,
+        (bounds.bottom - e.clientY) * pixelRatio,
       );
-      observer.observe(container);
-    }
+    };
 
-    // ── Render loop ──
-    renderer.setAnimationLoop(() => {
-      if (!isVisible) return; // skip GPU work entirely when off-screen
-      uniforms.iTime.value = clock.getElapsedTime();
-      renderer.render(scene, camera);
-    });
+    const onContextLost = (event: Event) => {
+      event.preventDefault();
+      contextLost = true;
+      stop();
+    };
+    const onContextRestored = () => {
+      contextLost = false;
+      onResize();
+    };
+    renderer.domElement.addEventListener("webglcontextlost", onContextLost);
+    renderer.domElement.addEventListener("webglcontextrestored", onContextRestored);
+
+    const ro = new ResizeObserver(onResize);
+    ro.observe(container);
+    window.addEventListener("resize", onResize, { passive: true });
+    const stopWatching = watchVisualActivity(container, (state) => {
+      const qualityChanged = compact !== state.compact || touch !== state.touch;
+      active = state.active;
+      reducedMotion = state.reducedMotion;
+      compact = state.compact;
+      touch = state.touch;
+
+      const shouldListen = active && !touch && !reducedMotion;
+      if (shouldListen !== listeningForMouse) {
+        window.removeEventListener("mousemove", onMouseMove);
+        if (shouldListen) window.addEventListener("mousemove", onMouseMove, { passive: true });
+        listeningForMouse = shouldListen;
+      }
+      stop();
+      if (qualityChanged || uniforms.iResolution.value.x === 0) onResize();
+      requestRender();
+    }, { pauseOffscreen, pauseOnScroll: true });
 
     // ── Cleanup ──
     return () => {
       ro.disconnect();
-      observer?.disconnect();
+      stopWatching();
+      stop();
+      window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
-      if (mouseRaf) cancelAnimationFrame(mouseRaf);
-
-      renderer.setAnimationLoop(null);
+      renderer.domElement.removeEventListener("webglcontextlost", onContextLost);
+      renderer.domElement.removeEventListener("webglcontextrestored", onContextRestored);
       renderer.domElement.remove();
       material.dispose();
       geometry.dispose();

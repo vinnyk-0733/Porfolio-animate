@@ -371,7 +371,14 @@ export function N8nWorkflowBlock() {
   };
 
   useEffect(() => {
-    const handlePointerMove = (e: PointerEvent) => {
+    let moveRaf = 0;
+    let pendingEvent: PointerEvent | null = null;
+
+    const processPointerMove = () => {
+      moveRaf = 0;
+      const e = pendingEvent;
+      if (!e) return;
+
       // 1. Handle Node Dragging
       if (dragState.current) {
         const dx = e.clientX - dragState.current.startX;
@@ -417,7 +424,21 @@ export function N8nWorkflowBlock() {
       }
     };
 
+    const handlePointerMove = (e: PointerEvent) => {
+      if (!dragState.current && !resizeState.current) return;
+      pendingEvent = e;
+      if (!moveRaf) {
+        moveRaf = requestAnimationFrame(processPointerMove);
+      }
+    };
+
     const handlePointerUp = () => {
+      if (moveRaf) {
+        cancelAnimationFrame(moveRaf);
+        moveRaf = 0;
+      }
+      pendingEvent = null;
+
       // Finish Node Drag
       if (dragState.current && dragState.current.hasMoved) {
         setNodes((latestNodes) => {
@@ -439,9 +460,10 @@ export function N8nWorkflowBlock() {
       }
     };
 
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerup", handlePointerUp, { passive: true });
     return () => {
+      if (moveRaf) cancelAnimationFrame(moveRaf);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
     };

@@ -248,6 +248,9 @@ class PixelCanvasElement extends BaseElement {
     this._parent = null
   }
 
+  private _isVisible: boolean = true
+  private _intersectionObserver: IntersectionObserver | null = null
+
   handleResize() {
     if (!this.ctx || !this._initialized) return
 
@@ -257,7 +260,8 @@ class PixelCanvasElement extends BaseElement {
     const width = Math.floor(rect.width)
     const height = Math.floor(rect.height)
 
-    const dpr = window.devicePixelRatio || 1
+    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches
+    const dpr = isTouch ? 1 : Math.min(window.devicePixelRatio || 1, 1.5)
     this.canvas.width = width * dpr
     this.canvas.height = height * dpr
     this.canvas.style.width = `${width}px`
@@ -285,8 +289,12 @@ class PixelCanvasElement extends BaseElement {
     if (!this.ctx) return
     this.pixels = []
 
-    for (let x = 0; x < this.canvas.width; x += this.gap) {
-      for (let y = 0; y < this.canvas.height; y += this.gap) {
+    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches
+    // On touch/mobile devices, scale the gap up to keep pixel count light and prevent GPU lag
+    const effectiveGap = isTouch ? Math.max(22, this.gap * 2) : this.gap
+
+    for (let x = 0; x < this.canvas.width; x += effectiveGap) {
+      for (let y = 0; y < this.canvas.height; y += effectiveGap) {
         const color =
           this.colors[Math.floor(Math.random() * this.colors.length)]
         let delay = 0
@@ -305,11 +313,19 @@ class PixelCanvasElement extends BaseElement {
   }
 
   handleAnimation(name: "appear" | "disappear") {
+    if (this.reducedMotion) return
     if (this.animation) {
       cancelAnimationFrame(this.animation)
+      this.animation = null
     }
 
     const animate = () => {
+      // Pause animation if user is scrolling or tab is hidden
+      if (document.documentElement.dataset.visualScrolling === "true" || document.hidden) {
+        this.animation = requestAnimationFrame(animate)
+        return
+      }
+
       this.animation = requestAnimationFrame(animate)
 
       const timeNow = performance.now()
