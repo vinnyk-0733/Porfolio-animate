@@ -181,11 +181,8 @@
   .mobile-glass { background-color: rgba(10, 10, 10, .86); }
 }
 
-/* Decorative loops yield to scrolling and to sections outside the viewport. */
-[data-visual-scrolling="true"] .animate-pulse,
-[data-visual-scrolling="true"] .animate-ping,
-[data-visual-scrolling="true"] .animate-bounce,
-[data-visual-paused="true"] [class*="animate-"] {
+/* Decorative heavy loops yield to active scrolling on touch screens */
+[data-visual-scrolling="true"] .animate-ping {
   animation-play-state: paused !important;
 }
 

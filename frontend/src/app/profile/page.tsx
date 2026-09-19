@@ -9,11 +9,7 @@ import { useAdmin } from "@/context/admin-context";
 import { Button } from "@/components/ui/button";
 import { Typewriter } from "@/components/ui/typewriter";
 
-const CyberneticGridShader = dynamic(
-  () => import("@/components/ui/cybernetic-grid-shader"),
-  { ssr: false }
-);
-
+import { SonarGrid } from "@/components/ui/sonar-grid";
 
 export default function SplineSceneBasic() {
   const { isAdmin, editFetch } = useAdmin();
@@ -95,11 +91,22 @@ export default function SplineSceneBasic() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden flex items-center p-6 sm:p-12 md:p-24">
-      {/* Cybernetic Grid Background */}
-      <div className="absolute inset-0 z-0">
-        <CyberneticGridShader maxDpr={1} pauseOffscreen />
-      </div>
+    <SonarGrid
+      spacing={28}
+      dotRadius={1.3}
+      baseOpacity={0.25}
+      color="#10b981"
+      pingEvery={2.8}
+      speed={260}
+      ringWidth={90}
+      amplitude={2.2}
+      interactive={true}
+      className="relative min-h-screen bg-black overflow-hidden flex items-center p-6 sm:p-12 md:p-24 text-white"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_30%_40%,rgba(0,0,0,0.7)_0%,transparent_100%)]"
+      />
 
       {/* Front Interface */}
       <div className="relative z-10 w-full max-w-3xl pointer-events-none mt-20">
@@ -247,6 +254,6 @@ export default function SplineSceneBasic() {
           </div>
         </div>
       )}
-    </div>
+    </SonarGrid>
   );
 }

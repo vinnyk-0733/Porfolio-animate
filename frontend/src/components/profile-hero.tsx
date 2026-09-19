@@ -8,12 +8,6 @@ import { useAdmin } from "@/context/admin-context";
 import { Button } from "@/components/ui/button";
 import { Typewriter } from "@/components/ui/typewriter";
 
-const CyberneticGridShader = dynamic(
-  () => import("@/components/ui/cybernetic-grid-shader"),
-  { ssr: false }
-);
-
-
 export function ProfileHero() {
   const { isAdmin, editFetch } = useAdmin();
   const [name, setName] = useState<string>(defaultProfile.name);
@@ -98,11 +92,12 @@ export function ProfileHero() {
   };
 
   return (
-    <div id="profile" className="relative min-h-screen bg-black overflow-hidden flex items-center p-6 sm:p-12 md:p-24">
-      {/* Cybernetic Grid Background */}
-      <div className="absolute inset-0 z-0">
-        <CyberneticGridShader maxDpr={1} pauseOffscreen />
-      </div>
+    <div id="profile" className="relative min-h-screen bg-transparent overflow-hidden flex items-center p-6 sm:p-12 md:p-24">
+      {/* Soft wash behind copy for contrast against SonarGrid */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_45%,rgba(0,0,0,0.75)_0%,transparent_100%)]"
+      />
 
       {/* Front Interface */}
       <div className="relative z-10 w-full max-w-3xl pointer-events-none mt-20">

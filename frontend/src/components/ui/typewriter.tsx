@@ -1,55 +1,43 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { watchVisualActivity } from "@/lib/visual-activity";
+import React, { useState, useEffect } from "react";
 
 export function Typewriter({ words }: { words: string[] }) {
-  const root = useRef<HTMLSpanElement>(null);
-  const text = useRef<HTMLSpanElement>(null);
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    if (!root.current || !text.current || words.length === 0) return;
-    const output = text.current;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    let index = 0;
-    let length = 0;
-    let deleting = false;
-    let running = false;
-    let reduced = false;
-    const tick = () => {
-      timer = undefined;
-      if (!running || reduced) return;
-      const word = words[index];
-      length += deleting ? -1 : 1;
-      output.textContent = word.slice(0, length);
-      let delay = deleting ? 40 : 75;
-      if (!deleting && length >= word.length) {
-        deleting = true;
-        delay = 2500;
-      } else if (deleting && length <= 0) {
-        deleting = false;
-        index = (index + 1) % words.length;
-        delay = 75;
-      }
-      timer = setTimeout(tick, delay);
-    };
-    const unsubscribe = watchVisualActivity(root.current, (state) => {
-      running = state.active;
-      reduced = state.reducedMotion;
-      root.current?.setAttribute("data-visual-paused", String(!running || reduced));
-      clearTimeout(timer);
-      timer = undefined;
-      if (reduced) output.textContent = words[0];
-      else if (running) timer = setTimeout(tick, 75);
-    });
-    return () => { clearTimeout(timer); unsubscribe(); };
-  }, [words]);
+    if (!words || words.length === 0) return;
+    const currentWord = words[wordIndex % words.length] || "";
+    let timeout: NodeJS.Timeout;
+
+    if (isDeleting) {
+      timeout = setTimeout(() => {
+        setText((prev) => currentWord.substring(0, prev.length - 1));
+        if (text.length <= 1) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }, 40);
+    } else {
+      timeout = setTimeout(() => {
+        setText((prev) => currentWord.substring(0, prev.length + 1));
+        if (text.length >= currentWord.length) {
+          timeout = setTimeout(() => setIsDeleting(true), 2200);
+        }
+      }, 75);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex, words]);
 
   return (
-    <span ref={root} className="inline-block">
-      <span className="sr-only">{words[0]}</span>
-      <span ref={text} aria-hidden="true" />
-      <span aria-hidden="true" className="animate-[pulse_1s_ease-in-out_infinite] opacity-70 ml-1">|</span>
+    <span className="inline-block">
+      <span>{text}</span>
+      <span className="animate-pulse opacity-80 ml-1 text-emerald-400 font-bold">|</span>
     </span>
   );
 }
+
+export default Typewriter;
