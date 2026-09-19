@@ -48,7 +48,7 @@ const mutationCases = [
 
 // Compile the application's actual TypeScript without writing generated files.
 // Explicit imports isolate these tests from MongoDB and all external services.
-function fixture() {
+function fixture(settingsStore = { document: null }) {
   const state = { calls: [], auth: { ...credential }, database: "available" };
   const cache = new Map();
   const db = {};
@@ -76,6 +76,23 @@ function fixture() {
       if (state.database === "failure") throw new Error("Simulated database failure");
       return {
         collection(name) {
+          if (name === "admin_settings") {
+            return {
+              async findOne(query) {
+                assert.deepEqual(query, { _id: "session-signing-key" });
+                state.calls.push({ method: "readSessionKey", args: [] });
+                return settingsStore.document;
+              },
+              async updateOne(query, update, options) {
+                assert.deepEqual(query, { _id: "session-signing-key" });
+                assert.deepEqual(options, { upsert: true });
+                state.calls.push({ method: "createSessionKey", args: [] });
+                if (state.keyWriteFailure) throw new Error("Simulated key storage failure");
+                settingsStore.document ??= { _id: query._id, ...update.$setOnInsert };
+                if (state.duplicateKeyRace) throw Object.assign(new Error("Duplicate key"), { code: 11000 });
+              },
+            };
+          }
           assert.equal(name, "admin_auth");
           return {
             async findOne(query) {
@@ -154,7 +171,7 @@ for (const item of mutationCases) {
     test(`${item.method} /api/${item.route} rejects ${tokenKind} session before reading body or database`, async () => {
       const app = fixture();
       const token = tokenKind === "absent" ? undefined
-        : tokenKind === "tampered" ? tamper(app.auth.generateSessionToken())
+        : tokenKind === "tampered" ? tamper(await app.auth.generateSessionToken())
           : signPayload(sessionPayload(Date.now() - app.auth.SESSION_MAX_AGE * 1000 - 1000));
       const input = request(item.route, { method: item.method, token, rawBody: "invalid JSON" });
       const response = await app.route(item.route)[item.method](input.req);
@@ -169,7 +186,7 @@ for (const item of mutationCases) {
     const app = fixture();
     const input = request(item.route, {
       method: item.method,
-      token: app.auth.generateSessionToken(),
+      token: await app.auth.generateSessionToken(),
       body: item.body,
       headers: { origin: "https://portfolio.test" },
     });
@@ -184,7 +201,7 @@ for (const item of mutationCases) {
     const app = fixture();
     const input = request(item.route, {
       method: item.method,
-      token: app.auth.generateSessionToken(),
+      token: await app.auth.generateSessionToken(),
       body: item.body,
       headers: { origin: "https://attacker.test" },
     });
@@ -213,7 +230,7 @@ for (const force of [false, true]) {
   test(`seed passes explicit force=${force} unchanged to the database`, async () => {
     const app = fixture();
     const response = await app.route("seed").POST(request("seed", {
-      method: "POST", token: app.auth.generateSessionToken(), body: { force },
+      method: "POST", token: await app.auth.generateSessionToken(), body: { force },
     }).req);
     assert.equal(response.status, 200);
     assert.deepEqual(app.state.calls, [{ method: "seedDatabase", args: [force] }]);
@@ -224,7 +241,7 @@ for (const body of [{ force: "false" }, { force: "true" }, { force: 1 }, { force
   test(`seed rejects unsafe payload ${JSON.stringify(body)}`, async () => {
     const app = fixture();
     const response = await app.route("seed").POST(request("seed", {
-      method: "POST", token: app.auth.generateSessionToken(), body,
+      method: "POST", token: await app.auth.generateSessionToken(), body,
     }).req);
     assert.equal(response.status, 400);
     assert.deepEqual(app.state.calls, []);
@@ -234,39 +251,108 @@ for (const body of [{ force: "false" }, { force: "true" }, { force: 1 }, { force
 test("seed rejects malformed JSON before any database operation", async () => {
   const app = fixture();
   const response = await app.route("seed").POST(request("seed", {
-    method: "POST", token: app.auth.generateSessionToken(), rawBody: "{broken",
+    method: "POST", token: await app.auth.generateSessionToken(), rawBody: "{broken",
   }).req);
   assert.equal(response.status, 400);
   assert.deepEqual(app.state.calls, []);
 });
 
-test("new admin sessions verify and have unique nonces", () => {
+test("new admin sessions verify and have unique nonces", async () => {
   const { auth } = fixture();
-  const first = auth.generateSessionToken();
-  const second = auth.generateSessionToken();
-  assert.equal(auth.verifySessionToken(first), true);
-  assert.equal(auth.verifySessionToken(second), true);
+  const first = await auth.generateSessionToken();
+  const second = await auth.generateSessionToken();
+  assert.equal(await auth.verifySessionToken(first), true);
+  assert.equal(await auth.verifySessionToken(second), true);
   assert.notEqual(first, second);
-  assert.equal(auth.verifySessionToken(tamper(first)), false);
+  assert.equal(await auth.verifySessionToken(tamper(first)), false);
 });
 
 for (const setting of [undefined, "", "short-secret", " ".repeat(32)]) {
-  test(`missing or insufficient AUTH_SECRET (${JSON.stringify(setting)}) disables sessions and login`, async () => {
-    const app = fixture();
-    const validToken = app.auth.generateSessionToken();
+  test(`login works with the saved password without a valid AUTH_SECRET (${JSON.stringify(setting)})`, async () => {
     if (setting === undefined) delete process.env.AUTH_SECRET;
     else process.env.AUTH_SECRET = setting;
-    assert.equal(app.auth.isAuthConfigured(), false);
-    assert.throws(() => app.auth.generateSessionToken(), /not configured/);
-    assert.equal(app.auth.verifySessionToken(validToken), false);
-    assert.equal(await app.auth.authenticateAdmin(password), false);
+    const store = { document: null };
+    const app = fixture(store);
     const response = await app.route("auth").POST(request("auth", { method: "POST", body: { password } }).req);
-    assert.equal(response.status, 503);
-    assert.deepEqual(app.state.calls, []);
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).success, true);
+    const token = response.cookies.get("admin_token").value;
+    assert.match(store.document.secret, /^[a-f0-9]{64}$/);
+    assert.notEqual(store.document.secret, setting);
+    const otherInstance = fixture(store);
+    assert.equal(await otherInstance.auth.verifySessionToken(token), true);
+    const updated = await otherInstance.route("profile").PUT(request("profile", {
+      method: "PUT", token, body: { name: "Authenticated edit" },
+    }).req);
+    assert.equal(updated.status, 200);
+    assert.ok(otherInstance.state.calls.some((call) => call.method === "updateProfileData"));
   });
 }
 
-test("signed expired, future, malformed timestamp, and legacy sessions are rejected", () => {
+test("a wrong password cannot create the automatic signing key or enable editing", async () => {
+  delete process.env.AUTH_SECRET;
+  const store = { document: null };
+  const app = fixture(store);
+  const response = await app.route("auth").POST(request("auth", {
+    method: "POST", body: { password: "incorrect-password" },
+  }).req);
+  assert.equal(response.status, 401);
+  assert.equal(response.cookies.get("admin_token"), undefined);
+  assert.equal(store.document, null);
+  assert.equal(app.state.calls.some((call) => call.method === "createSessionKey"), false);
+});
+
+test("verification without a stored key never provisions one", async () => {
+  delete process.env.AUTH_SECRET;
+  const store = { document: null };
+  const app = fixture(store);
+  assert.equal(await app.auth.verifySessionToken(signPayload(sessionPayload())), false);
+  assert.equal(store.document, null);
+  assert.equal(app.state.calls.some((call) => call.method === "createSessionKey"), false);
+});
+
+test("automatic sessions remain valid after another login and a server restart", async () => {
+  delete process.env.AUTH_SECRET;
+  const store = { document: null };
+  const first = fixture(store);
+  const firstToken = await first.auth.generateSessionToken();
+  const key = store.document.secret;
+  const second = fixture(store);
+  const secondToken = await second.auth.generateSessionToken();
+  assert.equal(store.document.secret, key);
+  assert.equal(await second.auth.verifySessionToken(firstToken), true);
+  assert.equal(await fixture(store).auth.verifySessionToken(secondToken), true);
+  assert.equal(second.state.calls.some((call) => call.method === "createSessionKey"), false);
+});
+
+test("concurrent key provisioning reuses the winning unique database record", async () => {
+  delete process.env.AUTH_SECRET;
+  const store = { document: null };
+  const app = fixture(store);
+  app.state.duplicateKeyRace = true;
+  const token = await app.auth.generateSessionToken();
+  assert.equal(await fixture(store).auth.verifySessionToken(token), true);
+});
+
+test("failed session key storage never issues an authenticated cookie", async () => {
+  delete process.env.AUTH_SECRET;
+  const app = fixture();
+  app.state.keyWriteFailure = true;
+  const response = await app.route("auth").POST(request("auth", { method: "POST", body: { password } }).req);
+  assert.equal(response.status, 503);
+  assert.equal(response.cookies.get("admin_token"), undefined);
+});
+
+test("verification fails closed during database failure when using automatic keys", async () => {
+  delete process.env.AUTH_SECRET;
+  const store = { document: null };
+  const app = fixture(store);
+  const token = await app.auth.generateSessionToken();
+  app.state.database = "failure";
+  assert.equal(await app.auth.verifySessionToken(token), false);
+});
+
+test("signed expired, future, malformed timestamp, and legacy sessions are rejected", async () => {
   const { auth } = fixture();
   const invalidPayloads = [
     sessionPayload(Date.now() - auth.SESSION_MAX_AGE * 1000),
@@ -281,10 +367,10 @@ test("signed expired, future, malformed timestamp, and legacy sessions are rejec
     null,
   ];
   for (const payload of invalidPayloads) {
-    assert.equal(auth.verifySessionToken(signPayload(payload)), false, JSON.stringify(payload));
+    assert.equal(await auth.verifySessionToken(signPayload(payload)), false, JSON.stringify(payload));
   }
   for (const token of ["", "not.a.token", "a.b", "x".repeat(1025)]) {
-    assert.equal(auth.verifySessionToken(token), false);
+    assert.equal(await auth.verifySessionToken(token), false);
   }
 });
 
@@ -299,7 +385,7 @@ test("login with a provisioned password sets a secure HttpOnly session without r
   assert.equal(data.token, undefined);
   const cookie = response.cookies.get("admin_token");
   assert.ok(cookie);
-  assert.equal(app.auth.verifySessionToken(cookie.value), true);
+  assert.equal(await app.auth.verifySessionToken(cookie.value), true);
   assert.equal(JSON.stringify(data).includes(cookie.value), false);
   const header = response.headers.get("set-cookie");
   assert.match(header, /HttpOnly/i);
@@ -340,7 +426,7 @@ for (const body of [null, {}, { password: "" }, { password: 123 }, { password: "
 test("session status reports authentication and logout clears the HttpOnly cookie", async () => {
   const app = fixture();
   const route = app.route("auth");
-  const token = app.auth.generateSessionToken();
+  const token = await app.auth.generateSessionToken();
   assert.deepEqual(await (await route.GET(request("auth").req)).json(), { authenticated: false });
   assert.deepEqual(await (await route.GET(request("auth", { token }).req)).json(), { authenticated: true });
   const response = await route.DELETE(request("auth", { method: "DELETE", token }).req);

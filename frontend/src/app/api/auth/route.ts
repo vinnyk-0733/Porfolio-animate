@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { authenticateAdmin, generateSessionToken, isAuthConfigured, SESSION_MAX_AGE, verifySessionToken } from "@/lib/auth";
+import { authenticateAdmin, generateSessionToken, SESSION_MAX_AGE, verifySessionToken } from "@/lib/auth";
 import { requireSameOrigin } from "@/lib/require-admin";
 
 export const dynamic = "force-dynamic";
@@ -23,26 +23,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: "A valid password is required" }, { status: 400, headers });
   }
 
-  if (!isAuthConfigured()) {
-    return NextResponse.json({ success: false, error: "Admin sign-in is not configured" }, { status: 503, headers });
-  }
-
   try {
     if (!await authenticateAdmin(password)) {
       return NextResponse.json({ success: false, error: "Invalid password or admin account unavailable" }, { status: 401, headers });
     }
 
     const response = NextResponse.json({ success: true, message: "Edit mode enabled" }, { headers });
-    response.cookies.set("admin_token", generateSessionToken(), { ...cookieOptions, maxAge: SESSION_MAX_AGE });
+    response.cookies.set("admin_token", await generateSessionToken(), { ...cookieOptions, maxAge: SESSION_MAX_AGE });
     return response;
   } catch {
-    return NextResponse.json({ success: false, error: "Authentication failed" }, { status: 500, headers });
+    return NextResponse.json({ success: false, error: "Sign-in is temporarily unavailable. Please try again." }, { status: 503, headers });
   }
 }
 
 export async function GET(req: NextRequest) {
   const token = req.cookies.get("admin_token")?.value;
-  return NextResponse.json({ authenticated: token ? verifySessionToken(token) : false }, { headers });
+  return NextResponse.json({ authenticated: token ? await verifySessionToken(token) : false }, { headers });
 }
 
 export async function DELETE(req: NextRequest) {

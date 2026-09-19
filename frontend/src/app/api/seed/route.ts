@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function POST(req: NextRequest) {
-  const unauthorized = requireAdmin(req);
+  const unauthorized = await requireAdmin(req);
   if (unauthorized) return unauthorized;
 
   let body: unknown;

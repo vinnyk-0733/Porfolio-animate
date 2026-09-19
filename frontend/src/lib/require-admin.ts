@@ -10,9 +10,9 @@ export function requireSameOrigin(req: NextRequest): NextResponse | null {
   return null;
 }
 
-export function requireAdmin(req: NextRequest): NextResponse | null {
+export async function requireAdmin(req: NextRequest): Promise<NextResponse | null> {
   const token = req.cookies.get("admin_token")?.value;
-  if (!token || !verifySessionToken(token)) {
+  if (!token || !await verifySessionToken(token)) {
     return NextResponse.json({ error: "Admin authentication required" }, {
       status: 401,
       headers: { "Cache-Control": "no-store" },
