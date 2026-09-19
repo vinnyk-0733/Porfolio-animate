@@ -192,6 +192,10 @@ export function SonarGrid({
     const tick = (now: number) => {
       raf = 0
       if (!visible || document.hidden) return
+      if (document.documentElement.dataset.visualScrolling === "true") {
+        scheduleIdle(60)
+        return
+      }
       if (reduceMotion.matches) {
         ringsRef.current = []
         draw(now)

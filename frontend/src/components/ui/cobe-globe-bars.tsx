@@ -198,7 +198,7 @@ export function GlobeBars({
       touchRef.current = touch
       canvas.style.cursor = touch ? "auto" : "grab"
       stop()
-      if (qualityChanged && globe) globe.update({ mapSamples: compact || touch ? 8000 : 16000 })
+      if (qualityChanged && globe) globe.update({ mapSamples: compact || touch ? 5000 : 16000 })
       if (active) resize()
     }, { pauseOnScroll: true })
 
@@ -246,6 +246,7 @@ export function GlobeBars({
       {markers.map((m) => (
         <div
           key={m.id}
+          className="mobile-glass"
           style={{
             position: "absolute",
             positionAnchor: `--cobe-${m.id}`,
@@ -258,17 +259,15 @@ export function GlobeBars({
             alignItems: "center",
             gap: "0.2rem",
             padding: "0.35rem 0.5rem",
-            background: "rgba(10, 10, 10, 0.8)",
+            background: "rgba(10, 10, 10, 0.9)",
             border: "1.5px solid rgba(255, 255, 255, 0.2)",
-            backdropFilter: "blur(12px)",
             borderRadius: 6,
             minWidth: 70,
             pointerEvents: "auto" as const,
             cursor: "pointer",
             boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
             opacity: `var(--cobe-visible-${m.id}, 0)`,
-            filter: `blur(calc((1 - var(--cobe-visible-${m.id}, 0)) * 8px))`,
-            transition: "opacity 0.4s, filter 0.4s",
+            transition: "opacity 0.3s ease",
           }}
           onClick={(e) => {
             e.stopPropagation()
