@@ -52,7 +52,7 @@ function Typewriter({ words }: { words: string[] }) {
 }
 
 export default function SplineSceneBasic() {
-  const { isAdmin } = useAdmin();
+  const { isAdmin, editFetch } = useAdmin();
   const [name, setName] = useState<string>(defaultProfile.name);
   const [words, setWords] = useState<string[]>(defaultProfile.typewriterWords);
   const [bio, setBio] = useState<string>(defaultProfile.bio);
@@ -109,7 +109,7 @@ export default function SplineSceneBasic() {
         heroBio: editBio,
       };
 
-      const res = await fetch("/api/profile", {
+      const res = await editFetch("/api/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

@@ -7,7 +7,6 @@ let client: MongoClient | null = null;
 let clientPromise: Promise<MongoClient> | null = null;
 
 declare global {
-  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
@@ -39,7 +38,13 @@ export async function getMongoClient(): Promise<MongoClient | null> {
       return await clientPromise;
     }
   } catch (error) {
-    console.warn("Could not connect to MongoDB:", error);
+    // Retry after transient DNS/network failures instead of caching a rejected
+    // connection for the lifetime of a hosting instance.
+    global._mongoClientPromise = undefined;
+    clientPromise = null;
+    if (client) void client.close().catch(() => {});
+    client = null;
+    console.warn("Could not connect to MongoDB:", error instanceof Error ? error.name : "Connection error");
     return null;
   }
 }
@@ -50,7 +55,7 @@ export async function getDatabase(): Promise<Db | null> {
     if (!mongoClient) return null;
     return mongoClient.db(dbName);
   } catch (error) {
-    console.warn("Failed to get MongoDB database:", error);
+    console.warn("Failed to get MongoDB database:", error instanceof Error ? error.name : "Database error");
     return null;
   }
 }

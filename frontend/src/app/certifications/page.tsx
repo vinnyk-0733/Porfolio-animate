@@ -65,7 +65,7 @@ function mapCertifications(items: CertificationItem[]) {
 }
 
 export default function CertificationsPage() {
-  const { isAdmin, confirmDelete } = useAdmin();
+  const { isAdmin, confirmDelete, editFetch } = useAdmin();
   const [certItems, setCertItems] = useState<CertificationItem[]>(defaultCertifications);
 
   // Modals state
@@ -94,7 +94,7 @@ export default function CertificationsPage() {
   const saveCertsToDb = async (updated: CertificationItem[]) => {
     setIsSaving(true);
     try {
-      const res = await fetch("/api/certifications", {
+      const res = await editFetch("/api/certifications", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated),

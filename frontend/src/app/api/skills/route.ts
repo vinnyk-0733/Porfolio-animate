@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAdmin } from "@/lib/require-admin";
+import { checkEditPassword } from "@/lib/edit-password";
 import { getSkillsData, updateSkillsData } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -18,8 +18,8 @@ export async function GET() {
 }
 
 export async function PUT(req: NextRequest) {
-  const unauthorized = await requireAdmin(req);
-  if (unauthorized) return unauthorized;
+  const passwordFailure = await checkEditPassword(req);
+  if (passwordFailure) return passwordFailure;
 
   try {
     const body = await req.json();

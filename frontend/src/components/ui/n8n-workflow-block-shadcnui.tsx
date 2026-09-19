@@ -183,7 +183,7 @@ function mapNodes(
 }
 
 export function N8nWorkflowBlock() {
-  const { isAdmin, confirmDelete } = useAdmin();
+  const { isAdmin, confirmDelete, editFetch } = useAdmin();
   const [nodes, setNodes] = useState<WorkflowNode[]>(() => {
     const saved = getSavedPositions();
     return mapNodes(defaultExperience.nodes, saved);
@@ -239,7 +239,7 @@ export function N8nWorkflowBlock() {
         connections: currentConns,
       };
 
-      const res = await fetch("/api/experience", {
+      const res = await editFetch("/api/experience", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

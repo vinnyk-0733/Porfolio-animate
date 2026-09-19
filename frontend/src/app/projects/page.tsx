@@ -30,7 +30,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function ProjectsPage() {
-  const { isAdmin, confirmDelete } = useAdmin();
+  const { isAdmin, confirmDelete, editFetch } = useAdmin();
   const [projectsList, setProjectsList] = useState<ProjectItem[]>(defaultProjects);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -60,7 +60,7 @@ export default function ProjectsPage() {
   const saveProjectsToDb = async (updated: ProjectItem[]) => {
     setIsSaving(true);
     try {
-      const res = await fetch("/api/projects", {
+      const res = await editFetch("/api/projects", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated),

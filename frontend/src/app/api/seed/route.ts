@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { seedDatabase } from "@/lib/db";
-import { requireAdmin } from "@/lib/require-admin";
+import { checkEditPassword } from "@/lib/edit-password";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function POST(req: NextRequest) {
-  const unauthorized = await requireAdmin(req);
-  if (unauthorized) return unauthorized;
+  const passwordFailure = await checkEditPassword(req);
+  if (passwordFailure) return passwordFailure;
 
   let body: unknown;
   try {

@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, useRef } from "r
 import { Lock, Unlock, Eye, EyeOff, X, Check, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
+import { sendEditRequest } from "@/lib/edit-request";
 
 export interface ConfirmDialogOptions {
   title?: string;
@@ -18,6 +19,7 @@ export interface ConfirmDialogOptions {
 
 interface AdminContextType {
   isAdmin: boolean;
+  editFetch: (url: string, init?: RequestInit) => Promise<Response>;
   login: (password: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   openLoginModal: () => void;
@@ -27,6 +29,7 @@ interface AdminContextType {
 
 const AdminContext = createContext<AdminContextType>({
   isAdmin: false,
+  editFetch: async () => { throw new Error("Enter the edit password first."); },
   login: async () => ({ success: false }),
   logout: () => {},
   openLoginModal: () => {},
@@ -53,31 +56,11 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const authRequestVersion = useRef(0);
+  const editPassword = useRef("");
 
-  // Only the server can confirm the HttpOnly session cookie.
+  // Edit mode starts locked on each page load; no saved login or session lookup.
   useEffect(() => {
     clearLegacyAuth();
-    const controller = new AbortController();
-    const requestVersion = ++authRequestVersion.current;
-
-    fetch("/api/auth", {
-      credentials: "same-origin",
-      cache: "no-store",
-      signal: controller.signal,
-    })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!controller.signal.aborted && requestVersion === authRequestVersion.current) {
-          setIsAdmin(data?.authenticated === true);
-        }
-      })
-      .catch(() => {
-        if (!controller.signal.aborted && requestVersion === authRequestVersion.current) {
-          setIsAdmin(false);
-        }
-      });
-
-    return () => controller.abort();
   }, []);
 
   const login = async (pwd: string) => {
@@ -85,9 +68,9 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/auth", {
+      const res = await fetch("/api/edit-mode", {
         method: "POST",
-        credentials: "same-origin",
+        credentials: "omit",
         cache: "no-store",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: pwd }),
@@ -98,19 +81,22 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       }
 
       if (res.ok && data?.success === true) {
+        editPassword.current = pwd;
         setIsAdmin(true);
         setIsLoginModalOpen(false);
         setPassword("");
         return { success: true };
       } else {
+        editPassword.current = "";
         setIsAdmin(false);
-        const errMsg = typeof data?.error === "string" ? data.error : "Login request failed";
+        const errMsg = typeof data?.error === "string" ? data.error : "Could not check the password.";
         setError(errMsg);
         return { success: false, error: errMsg };
       }
     } catch {
-      const errMsg = "Login request failed. Please try again.";
+      const errMsg = "Could not check the password. Please try again.";
       if (requestVersion === authRequestVersion.current) {
+        editPassword.current = "";
         setIsAdmin(false);
         setError(errMsg);
       }
@@ -122,18 +108,28 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const logout = async () => {
+  const logout = () => {
     ++authRequestVersion.current;
+    editPassword.current = "";
+    setPassword("");
     setIsAdmin(false);
     setLoading(false);
     clearLegacyAuth();
-    try {
-      await fetch("/api/auth", {
-        method: "DELETE",
-        credentials: "same-origin",
-        cache: "no-store",
-      });
-    } catch {}
+  };
+
+  const editFetch = async (url: string, init?: RequestInit) => {
+    if (!editPassword.current) {
+      setIsAdmin(false);
+      setIsLoginModalOpen(true);
+      throw new Error("Enter the edit password first.");
+    }
+    const response = await sendEditRequest(url, editPassword.current, init);
+    if (response.status === 403) {
+      logout();
+      setError("Please enter your current edit password again.");
+      setIsLoginModalOpen(true);
+    }
+    return response;
   };
 
   const openLoginModal = () => {
@@ -197,6 +193,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     <AdminContext.Provider
       value={{
         isAdmin,
+        editFetch,
         login,
         logout,
         openLoginModal,
@@ -220,7 +217,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
               onClick={logout}
               className="ml-1 text-[11px] text-white/50 hover:text-white px-2 py-0.5 rounded-full hover:bg-white/10 transition-colors"
             >
-              Log Out
+              Exit Edit Mode
             </button>
           </div>
         </div>
@@ -230,8 +227,8 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       <div className="portfolio-admin pointer-events-auto">
         <button
           onClick={isAdmin ? logout : openLoginModal}
-          title={isAdmin ? "Edit Mode Active (Click to Log Out)" : "Admin Edit Mode"}
-          aria-label={isAdmin ? "Log out of edit mode" : "Admin sign in"}
+          title={isAdmin ? "Exit Edit Mode" : "Enable Edit Mode"}
+          aria-label={isAdmin ? "Exit edit mode" : "Enable edit mode"}
           className={`h-11 w-11 lg:h-12 lg:w-12 rounded-full flex items-center justify-center bg-neutral-950 border transition-colors duration-150 shadow-lg ${
             isAdmin
               ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400 hover:scale-105 hover:bg-emerald-500/30"
@@ -248,7 +245,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Admin sign in"
+            aria-label="Enable edit mode"
             className="relative w-full max-w-md max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain rounded-2xl border border-white/15 bg-neutral-950 p-5 sm:p-8 text-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -266,8 +263,8 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
                 <Lock className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">Admin Authentication</h3>
-                <p className="text-xs text-neutral-400">Enter master password to enable edit mode</p>
+                <h3 className="text-lg font-bold text-white">Enable Edit Mode</h3>
+                <p className="text-xs text-neutral-400">Enter your password to edit this portfolio</p>
               </div>
             </div>
 
@@ -275,7 +272,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
             <form onSubmit={handleFormSubmit} className="space-y-4 mt-4">
               <div>
                 <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">
-                  Master Password
+                  Password
                 </label>
                 <div className="relative">
                   <input

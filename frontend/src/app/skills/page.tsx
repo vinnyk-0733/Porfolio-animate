@@ -37,7 +37,7 @@ const REGION_PRESETS = [
 ];
 
 export default function SkillsPage() {
-  const { isAdmin, confirmDelete } = useAdmin();
+  const { isAdmin, confirmDelete, editFetch } = useAdmin();
   const [skillsData, setSkillsData] = useState<SkillsData>(defaultSkills);
 
   // Modals state
@@ -73,7 +73,7 @@ export default function SkillsPage() {
   const saveSkillsToDb = async (updated: SkillsData) => {
     setIsSaving(true);
     try {
-      const res = await fetch("/api/skills", {
+      const res = await editFetch("/api/skills", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated),

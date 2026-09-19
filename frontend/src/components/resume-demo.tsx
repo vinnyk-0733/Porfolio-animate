@@ -71,7 +71,7 @@ function mapToTimelineItems(rawItems: TimelineSectionItem[]) {
 }
 
 export function ResumeDemo() {
-  const { isAdmin } = useAdmin();
+  const { isAdmin, editFetch } = useAdmin();
   const [rawTimeline, setRawTimeline] = useState<TimelineSectionItem[]>(defaultTimeline);
   const [timelineItems, setTimelineItems] = useState(() => mapToTimelineItems(defaultTimeline));
 
@@ -102,7 +102,7 @@ export function ResumeDemo() {
   const handleSaveToDb = async () => {
     setIsSaving(true);
     try {
-      const res = await fetch("/api/timeline", {
+      const res = await editFetch("/api/timeline", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editingItems),
